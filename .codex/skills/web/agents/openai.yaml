@@ -1,0 +1,4 @@
+interface:
+  display_name: "Frontend UI"
+  short_description: "Vanilla JS SPA with Arco Design token CSS system"
+  default_prompt: "Use $web to modify the frontend UI following the project's vanilla JS and Arco CSS conventions."

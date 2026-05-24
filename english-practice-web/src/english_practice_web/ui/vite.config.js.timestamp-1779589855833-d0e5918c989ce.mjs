@@ -1,0 +1,20 @@
+// vite.config.js
+import { defineConfig } from "file:///Users/superjin/Documents/PracticeTool/english-practice-web/src/english_practice_web/ui/node_modules/vite/dist/node/index.js";
+import vue from "file:///Users/superjin/Documents/PracticeTool/english-practice-web/src/english_practice_web/ui/node_modules/@vitejs/plugin-vue/dist/index.mjs";
+var vite_config_default = defineConfig({
+  plugins: [vue()],
+  server: {
+    port: 3e3,
+    proxy: {
+      "/api": "http://127.0.0.1:8080"
+    }
+  },
+  build: {
+    outDir: "dist",
+    emptyOutDir: true
+  }
+});
+export {
+  vite_config_default as default
+};
+//# sourceMappingURL=data:application/json;base64,ewogICJ2ZXJzaW9uIjogMywKICAic291cmNlcyI6IFsidml0ZS5jb25maWcuanMiXSwKICAic291cmNlc0NvbnRlbnQiOiBbImNvbnN0IF9fdml0ZV9pbmplY3RlZF9vcmlnaW5hbF9kaXJuYW1lID0gXCIvVXNlcnMvc3VwZXJqaW4vRG9jdW1lbnRzL1ByYWN0aWNlVG9vbC9lbmdsaXNoLXByYWN0aWNlLXdlYi9zcmMvZW5nbGlzaF9wcmFjdGljZV93ZWIvdWlcIjtjb25zdCBfX3ZpdGVfaW5qZWN0ZWRfb3JpZ2luYWxfZmlsZW5hbWUgPSBcIi9Vc2Vycy9zdXBlcmppbi9Eb2N1bWVudHMvUHJhY3RpY2VUb29sL2VuZ2xpc2gtcHJhY3RpY2Utd2ViL3NyYy9lbmdsaXNoX3ByYWN0aWNlX3dlYi91aS92aXRlLmNvbmZpZy5qc1wiO2NvbnN0IF9fdml0ZV9pbmplY3RlZF9vcmlnaW5hbF9pbXBvcnRfbWV0YV91cmwgPSBcImZpbGU6Ly8vVXNlcnMvc3VwZXJqaW4vRG9jdW1lbnRzL1ByYWN0aWNlVG9vbC9lbmdsaXNoLXByYWN0aWNlLXdlYi9zcmMvZW5nbGlzaF9wcmFjdGljZV93ZWIvdWkvdml0ZS5jb25maWcuanNcIjtpbXBvcnQgeyBkZWZpbmVDb25maWcgfSBmcm9tICd2aXRlJ1xuaW1wb3J0IHZ1ZSBmcm9tICdAdml0ZWpzL3BsdWdpbi12dWUnXG5cbmV4cG9ydCBkZWZhdWx0IGRlZmluZUNvbmZpZyh7XG4gIHBsdWdpbnM6IFt2dWUoKV0sXG4gIHNlcnZlcjoge1xuICAgIHBvcnQ6IDMwMDAsXG4gICAgcHJveHk6IHtcbiAgICAgICcvYXBpJzogJ2h0dHA6Ly8xMjcuMC4wLjE6ODA4MCdcbiAgICB9XG4gIH0sXG4gIGJ1aWxkOiB7XG4gICAgb3V0RGlyOiAnZGlzdCcsXG4gICAgZW1wdHlPdXREaXI6IHRydWVcbiAgfVxufSlcbiJdLAogICJtYXBwaW5ncyI6ICI7QUFBdWIsU0FBUyxvQkFBb0I7QUFDcGQsT0FBTyxTQUFTO0FBRWhCLElBQU8sc0JBQVEsYUFBYTtBQUFBLEVBQzFCLFNBQVMsQ0FBQyxJQUFJLENBQUM7QUFBQSxFQUNmLFFBQVE7QUFBQSxJQUNOLE1BQU07QUFBQSxJQUNOLE9BQU87QUFBQSxNQUNMLFFBQVE7QUFBQSxJQUNWO0FBQUEsRUFDRjtBQUFBLEVBQ0EsT0FBTztBQUFBLElBQ0wsUUFBUTtBQUFBLElBQ1IsYUFBYTtBQUFBLEVBQ2Y7QUFDRixDQUFDOyIsCiAgIm5hbWVzIjogW10KfQo=

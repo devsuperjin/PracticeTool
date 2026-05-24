@@ -1,0 +1,24 @@
+[project]
+name = "english-practice-web"
+version = "0.1.0"
+description = "AI Tutor for IELTS Phrasal Verbs"
+requires-python = ">=3.14"
+dependencies = [
+    "fastapi>=0.115",
+    "requests>=2.32",
+    "uvicorn>=0.30",
+]
+
+[build-system]
+requires = ["hatchling >= 1.27.0"]
+build-backend = "hatchling.build"
+
+[project.scripts]
+web = "english_practice_web.server:main"
+
+[tool.uv]
+package = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/english_practice_web"]
+

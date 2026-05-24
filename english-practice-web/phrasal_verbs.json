@@ -1,0 +1,3544 @@
+[
+    {
+        "phrase": "abide by",
+        "meaning": "accept and follow rules or principles",
+        "example": "All candidates must abide by the test centre's rules during the exam.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "add up",
+        "meaning": "make sense or seem convincing",
+        "example": "Her explanation did not add up because the dates in the report were different.",
+        "meaning_index": 0,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "add up",
+        "meaning": "accumulate or add together to form a total",
+        "example": "Her explanation did not add up because the dates in the report were different.",
+        "meaning_index": 1,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "aim at",
+        "meaning": "intend something for a particular audience or purpose",
+        "example": "The new course is aimed at students preparing for academic writing.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "aim for",
+        "meaning": "try to achieve or reach",
+        "example": "Many applicants aim for a band score of 7 or above.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "be along",
+        "meaning": "arrive",
+        "example": "The supervisor said she would be along in a few minutes.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "be around",
+        "meaning": "be present or available",
+        "example": "A technician will be around this afternoon if the printer fails again.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "be badly off",
+        "meaning": "be in a poor or disadvantaged condition",
+        "example": "Households that are badly off often struggle to pay for private tutoring.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "be better off",
+        "meaning": "be in a better or more suitable situation",
+        "example": "Students may be better off choosing a quieter place to study.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "be confined to",
+        "meaning": "be limited to a place or group",
+        "example": "The survey was confined to first-year university students.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "be down",
+        "meaning": "not be working, especially a system",
+        "example": "The registration website was down when I tried to book the exam.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "be in charge of",
+        "meaning": "be responsible for managing something",
+        "example": "A senior lecturer is in charge of the research project.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "be made up of/from",
+        "meaning": "consist of or be composed of",
+        "example": "The committee is made up of teachers, students, and local employers.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "be off",
+        "meaning": "lose interest in or appetite for something",
+        "example": "After seeing the poor reviews, she was off the idea of renting that flat.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "be on offer",
+        "meaning": "be available",
+        "example": "Several evening classes are on offer at the community college.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "be on sale",
+        "meaning": "be available to buy",
+        "example": "Discounted travel cards are on sale at the station office.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "be on the way to",
+        "meaning": "be making progress towards something",
+        "example": "The city is on the way to becoming more cycle-friendly.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "be out of bounds",
+        "meaning": "be forbidden or not allowed to enter or use",
+        "example": "The laboratory is out of bounds unless a tutor is present.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "be struck by",
+        "meaning": "be strongly impressed or affected by something",
+        "example": "I was struck by how clearly the speaker explained the data.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "be taken aback",
+        "meaning": "be shocked or surprised",
+        "example": "The students were taken aback by the sudden change in the timetable.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "be taken with",
+        "meaning": "be impressed by or attracted to something",
+        "example": "The visitors were taken with the design of the new library.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "be through to",
+        "meaning": "be connected by phone",
+        "example": "After ten minutes on hold, I was finally through to the admissions office.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "be tied up in",
+        "meaning": "be closely connected with",
+        "example": "The rise in rents is tied up in wider changes in the housing market.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "be to do with",
+        "meaning": "be related to or connected with",
+        "example": "Most complaints were to do with noise in the student halls.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "be up",
+        "meaning": "be awake or out of bed",
+        "example": "She was up before six to review her notes.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "be up and running",
+        "meaning": "be operating or functioning",
+        "example": "The online booking system should be up and running by Monday.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "be up to",
+        "meaning": "be capable of or at the required standard",
+        "example": "His first draft was not up to the standard expected for the course.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "be up to someone",
+        "meaning": "be someone's decision or responsibility",
+        "example": "It is up to each student to check the deadline.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "be used to",
+        "meaning": "be accustomed to something",
+        "example": "International students soon become used to giving short presentations.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "bear in mind",
+        "meaning": "remember and take into account",
+        "example": "Bear in mind that public transport is reduced on Sundays.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "bear out",
+        "meaning": "support or confirm",
+        "example": "The interview data bears out the findings from the questionnaire.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "blend in with",
+        "meaning": "match or harmonise with surrounding features",
+        "example": "The new building blends in with the older college architecture.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "book in",
+        "meaning": "reserve or schedule",
+        "example": "You need to book in early if you want a morning speaking test.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "book out",
+        "meaning": "reserve something so it is not available to others",
+        "example": "The seminar room was booked out for the whole afternoon.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "book someone in",
+        "meaning": "arrange or register an appointment for someone",
+        "example": "The receptionist booked me in for a consultation next week.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "book up",
+        "meaning": "become fully reserved",
+        "example": "The language workshops book up quickly at the start of term.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "branch out",
+        "meaning": "expand into new areas",
+        "example": "The company plans to branch out into online education.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "break away from",
+        "meaning": "separate from a larger whole",
+        "example": "The research team broke away from the main department to form a new centre.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "break down",
+        "meaning": "stop working or collapse",
+        "example": "The lecturer broke down the argument into three clear stages.",
+        "meaning_index": 0,
+        "total_meanings": 3
+    },
+    {
+        "phrase": "break down",
+        "meaning": "divide or analyse into smaller parts",
+        "example": "The lecturer broke down the argument into three clear stages.",
+        "meaning_index": 1,
+        "total_meanings": 3
+    },
+    {
+        "phrase": "break down",
+        "meaning": "decompose or rot",
+        "example": "The lecturer broke down the argument into three clear stages.",
+        "meaning_index": 2,
+        "total_meanings": 3
+    },
+    {
+        "phrase": "break off",
+        "meaning": "end a relationship, contact, or connection",
+        "example": "Negotiations broke off when neither side would change its position.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "break out",
+        "meaning": "start suddenly",
+        "example": "A debate broke out after the speaker questioned the results.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "break the bank",
+        "meaning": "cost too much",
+        "example": "Buying second-hand textbooks will not break the bank.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "break the mould",
+        "meaning": "do something original or not follow the usual pattern",
+        "example": "Her study breaks the mould by combining science with local history.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "break up",
+        "meaning": "divide into separate parts",
+        "example": "The tutor broke up the class into small discussion groups.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "bring about",
+        "meaning": "cause something to happen",
+        "example": "Better public transport could bring about a reduction in car use.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "bring back",
+        "meaning": "restore or return something to a previous state",
+        "example": "The museum wants to bring back its evening lecture series.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "bring in",
+        "meaning": "introduce something new",
+        "example": "The school brought in a specialist to train new teachers.",
+        "meaning_index": 0,
+        "total_meanings": 3
+    },
+    {
+        "phrase": "bring in",
+        "meaning": "arrange for someone or something to come",
+        "example": "The school brought in a specialist to train new teachers.",
+        "meaning_index": 1,
+        "total_meanings": 3
+    },
+    {
+        "phrase": "bring in",
+        "meaning": "raise or earn money",
+        "example": "The school brought in a specialist to train new teachers.",
+        "meaning_index": 2,
+        "total_meanings": 3
+    },
+    {
+        "phrase": "bring out",
+        "meaning": "introduce, release, or launch a product",
+        "example": "The publisher will bring out a revised edition in June.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "bring someone round",
+        "meaning": "bring someone to a place",
+        "example": "A classmate brought me round to the study group after the lecture.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "bring someone up to date",
+        "meaning": "update someone with recent information",
+        "example": "The project manager brought the team up to date on the budget changes.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "bring someone up to speed",
+        "meaning": "teach or update someone to the required level",
+        "example": "The tutor brought the new student up to speed before the group task.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "bring to life",
+        "meaning": "make something seem real or vivid",
+        "example": "The speaker used photographs to bring the historical event to life.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "bring up",
+        "meaning": "mention a subject",
+        "example": "She brought up the issue of library opening hours during the meeting.",
+        "meaning_index": 0,
+        "total_meanings": 3
+    },
+    {
+        "phrase": "bring up",
+        "meaning": "raise a child",
+        "example": "She brought up the issue of library opening hours during the meeting.",
+        "meaning_index": 1,
+        "total_meanings": 3
+    },
+    {
+        "phrase": "bring up",
+        "meaning": "vomit",
+        "example": "She brought up the issue of library opening hours during the meeting.",
+        "meaning_index": 2,
+        "total_meanings": 3
+    },
+    {
+        "phrase": "build on / build upon",
+        "meaning": "develop from an existing basis",
+        "example": "The second experiment builds on the results of the first.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "build up",
+        "meaning": "increase, develop, or strengthen gradually",
+        "example": "Regular reading helps build up academic vocabulary.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "buy out",
+        "meaning": "buy or acquire a company or someone's share",
+        "example": "A larger publisher bought out the small education company.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "call for",
+        "meaning": "publicly demand or request",
+        "example": "Local residents called for stricter controls on traffic noise.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "call in",
+        "meaning": "visit briefly",
+        "example": "The landlord called in to check the heating system.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "carry on",
+        "meaning": "continue",
+        "example": "Despite the noise outside, the class carried on with the listening test.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "carry out",
+        "meaning": "perform or complete a task",
+        "example": "The university carried out a survey on study habits.",
+        "meaning_index": 0,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "carry out",
+        "meaning": "conduct work or research",
+        "example": "The university carried out a survey on study habits.",
+        "meaning_index": 1,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "carry someone along",
+        "meaning": "keep someone interested or emotionally involved",
+        "example": "The speaker's enthusiasm carried the audience along.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "catch on",
+        "meaning": "become popular or widely accepted",
+        "example": "Mobile payment caught on quickly among university students.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "cater for",
+        "meaning": "provide what a particular group needs",
+        "example": "The course caters for learners who need advanced writing practice.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "check in",
+        "meaning": "register on arrival at a hotel or airport",
+        "example": "We checked in at the conference desk before the first talk.",
+        "meaning_index": 0,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "check in",
+        "meaning": "deposit items officially for safekeeping",
+        "example": "We checked in at the conference desk before the first talk.",
+        "meaning_index": 1,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "check on",
+        "meaning": "verify or find out information about something",
+        "example": "The administrator checked on the room booking before confirming it.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "check out",
+        "meaning": "inspect, examine, or look into",
+        "example": "You should check out the library database before choosing a topic.",
+        "meaning_index": 0,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "check out",
+        "meaning": "leave a hotel after paying",
+        "example": "You should check out the library database before choosing a topic.",
+        "meaning_index": 1,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "close down",
+        "meaning": "stop operating or shut permanently",
+        "example": "Several small bookshops closed down after rents increased.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "come about",
+        "meaning": "happen or occur",
+        "example": "The policy change came about after years of public pressure.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "come across",
+        "meaning": "encounter by chance",
+        "example": "I came across a useful article while researching renewable energy.",
+        "meaning_index": 0,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "come across",
+        "meaning": "be communicated or understood by others",
+        "example": "I came across a useful article while researching renewable energy.",
+        "meaning_index": 1,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "come across as",
+        "meaning": "seem or give an impression",
+        "example": "In the interview, he came across as calm and well prepared.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "come along",
+        "meaning": "come with someone or attend",
+        "example": "A few exchange students came along to the debate club.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "come around / come round",
+        "meaning": "visit someone's place",
+        "example": "My tutor came round to discuss the project plan.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "come down",
+        "meaning": "decrease",
+        "example": "The cost of solar panels has come down in recent years.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "come down to",
+        "meaning": "be mainly explained by or depend on",
+        "example": "Success in the exam often comes down to careful time management.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "come first",
+        "meaning": "finish in first place",
+        "example": "Their team came first in the national science competition.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "come in",
+        "meaning": "arrive, especially by transport",
+        "example": "The latest figures came in just before the report was printed.",
+        "meaning_index": 0,
+        "total_meanings": 3
+    },
+    {
+        "phrase": "come in",
+        "meaning": "be received as new information",
+        "example": "The latest figures came in just before the report was printed.",
+        "meaning_index": 1,
+        "total_meanings": 3
+    },
+    {
+        "phrase": "come in",
+        "meaning": "become introduced or start being used",
+        "example": "The latest figures came in just before the report was printed.",
+        "meaning_index": 2,
+        "total_meanings": 3
+    },
+    {
+        "phrase": "come in handy",
+        "meaning": "prove useful",
+        "example": "These notes will come in handy during revision.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "come into fashion",
+        "meaning": "become fashionable or widely used",
+        "example": "Shared workspaces have come into fashion among young professionals.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "come into use",
+        "meaning": "begin to be used",
+        "example": "Digital tickets came into use on campus last year.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "come on",
+        "meaning": "start operating or begin",
+        "example": "The lights came on as soon as we entered the laboratory.",
+        "meaning_index": 0,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "come on",
+        "meaning": "urge, encourage, or express disbelief",
+        "example": "The lights came on as soon as we entered the laboratory.",
+        "meaning_index": 1,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "come out",
+        "meaning": "be released or published",
+        "example": "The final report came out earlier than expected.",
+        "meaning_index": 0,
+        "total_meanings": 4
+    },
+    {
+        "phrase": "come out",
+        "meaning": "become known or revealed",
+        "example": "The final report came out earlier than expected.",
+        "meaning_index": 1,
+        "total_meanings": 4
+    },
+    {
+        "phrase": "come out",
+        "meaning": "have a particular result or appearance",
+        "example": "The final report came out earlier than expected.",
+        "meaning_index": 2,
+        "total_meanings": 4
+    },
+    {
+        "phrase": "come out",
+        "meaning": "visit or travel to provide a service",
+        "example": "The final report came out earlier than expected.",
+        "meaning_index": 3,
+        "total_meanings": 4
+    },
+    {
+        "phrase": "come out at",
+        "meaning": "result in a particular amount",
+        "example": "The total cost came out at just under two hundred pounds.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "come out of",
+        "meaning": "result from or be produced by",
+        "example": "Several practical suggestions came out of the workshop.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "come out with",
+        "meaning": "produce or publish a result",
+        "example": "The institute came out with a new study on urban air quality.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "come over",
+        "meaning": "visit or travel from another place or country",
+        "example": "A guest lecturer came over from Canada for the conference.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "come through to",
+        "meaning": "be connected by phone",
+        "example": "The call finally came through to the right department.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "come to an end",
+        "meaning": "finish",
+        "example": "The training session came to an end at four o'clock.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "come true",
+        "meaning": "become real or happen as hoped",
+        "example": "Her dream of studying abroad came true after she won a scholarship.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "come up",
+        "meaning": "arise or be mentioned",
+        "example": "Several questions came up during the seminar.",
+        "meaning_index": 0,
+        "total_meanings": 4
+    },
+    {
+        "phrase": "come up",
+        "meaning": "appear or be displayed",
+        "example": "Several questions came up during the seminar.",
+        "meaning_index": 1,
+        "total_meanings": 4
+    },
+    {
+        "phrase": "come up",
+        "meaning": "approach or be scheduled soon",
+        "example": "Several questions came up during the seminar.",
+        "meaning_index": 2,
+        "total_meanings": 4
+    },
+    {
+        "phrase": "come up",
+        "meaning": "sprout or emerge from the ground",
+        "example": "Several questions came up during the seminar.",
+        "meaning_index": 3,
+        "total_meanings": 4
+    },
+    {
+        "phrase": "come up with",
+        "meaning": "produce, invent, or think of something",
+        "example": "The group came up with a practical solution to the transport problem.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "connect with",
+        "meaning": "form a meaningful relationship with",
+        "example": "The teacher connected with the class by using real-life examples.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "cope with",
+        "meaning": "manage or deal successfully with something difficult",
+        "example": "New students need strategies to cope with academic pressure.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "could do with",
+        "meaning": "need or would benefit from something",
+        "example": "The waiting room could do with more chairs.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "count on",
+        "meaning": "rely on",
+        "example": "You can count on the library staff for help with databases.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "cover someone for",
+        "meaning": "insure or protect someone for an activity",
+        "example": "The policy covers students for accidents during fieldwork.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "creep up on",
+        "meaning": "approach gradually and unexpectedly",
+        "example": "Exam stress can creep up on students near the end of term.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "cut down",
+        "meaning": "reduce or shorten",
+        "example": "The editor asked me to cut down the introduction.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "cut down on",
+        "meaning": "reduce the amount or number of something",
+        "example": "The university is trying to cut down on paper use.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "cut in",
+        "meaning": "start operating automatically",
+        "example": "The backup generator cuts in when the main power fails.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "cut off",
+        "meaning": "isolate or separate",
+        "example": "Flooding cut off the village from nearby towns.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "date back to / date from",
+        "meaning": "originate from a particular time",
+        "example": "The college buildings date back to the nineteenth century.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "deal with",
+        "meaning": "handle, manage, address, or discuss",
+        "example": "The report deals with the causes of youth unemployment.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "descend into",
+        "meaning": "deteriorate into a worse state",
+        "example": "Without clear rules, the meeting descended into confusion.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "die off",
+        "meaning": "die gradually or in large numbers",
+        "example": "Some native plants died off after the long drought.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "die out",
+        "meaning": "become extinct or disappear completely",
+        "example": "Traditional crafts may die out if young people do not learn them.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "dispense with",
+        "meaning": "do without or remove something unnecessary",
+        "example": "The new system dispenses with paper application forms.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "do away with",
+        "meaning": "remove or eliminate",
+        "example": "The college plans to do away with late registration fees.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "do with",
+        "meaning": "need or benefit from",
+        "example": "This essay could do with a stronger conclusion.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "draw on",
+        "meaning": "use something as a source",
+        "example": "The author draws on interviews with local residents.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "draw the line",
+        "meaning": "set a limit",
+        "example": "The school draws the line at using phones during exams.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "draw up",
+        "meaning": "prepare or create a written plan or formal document",
+        "example": "The council drew up a plan for improving public transport.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "dress down",
+        "meaning": "wear less formal clothing",
+        "example": "Staff can dress down on Fridays.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "dress up",
+        "meaning": "wear special, smart, or costume clothes",
+        "example": "Students dressed up for the end-of-year ceremony.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "drop in",
+        "meaning": "visit casually",
+        "example": "I dropped in at the language centre to ask about classes.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "drop off",
+        "meaning": "deliver or leave someone/something somewhere",
+        "example": "The driver dropped off the parcels at reception.",
+        "meaning_index": 0,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "drop off",
+        "meaning": "fall asleep or decrease gradually",
+        "example": "The driver dropped off the parcels at reception.",
+        "meaning_index": 1,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "drop out",
+        "meaning": "leave a course before finishing",
+        "example": "He dropped out of the course after finding a full-time job.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "eat into",
+        "meaning": "use up part of a limited amount",
+        "example": "Extra commuting time eats into my study hours.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "end up",
+        "meaning": "finally be in a situation after a process",
+        "example": "She ended up choosing environmental science as her major.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "end up with",
+        "meaning": "finally have or receive",
+        "example": "If you ignore the instructions, you may end up with a lower score.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "face up to",
+        "meaning": "accept, confront, and deal with something difficult",
+        "example": "Governments must face up to the long-term cost of pollution.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "fall apart",
+        "meaning": "break into pieces or come apart",
+        "example": "The old folder fell apart after years of use.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "fall into",
+        "meaning": "belong to or be classified in a category",
+        "example": "These responses fall into three main groups.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "fall into disrepair",
+        "meaning": "become neglected and in poor condition",
+        "example": "The sports centre fell into disrepair after funding was cut.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "fall out of use",
+        "meaning": "stop being used",
+        "example": "Some regional expressions have fallen out of use.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "feed back",
+        "meaning": "return information or results",
+        "example": "The software feeds back the test results immediately.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "feed into",
+        "meaning": "contribute to or connect with a later purpose",
+        "example": "The survey findings feed into the final policy proposal.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "feel like",
+        "meaning": "want or be in the mood for something",
+        "example": "After a long lecture, I felt like taking a short walk.",
+        "meaning_index": 0,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "feel like",
+        "meaning": "have the sensation or texture of",
+        "example": "After a long lecture, I felt like taking a short walk.",
+        "meaning_index": 1,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "figure out",
+        "meaning": "understand or solve something",
+        "example": "It took me a while to figure out the statistics question.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "fill in",
+        "meaning": "complete a form or blank space",
+        "example": "Please fill in the application form before Friday.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "fill out",
+        "meaning": "complete a form",
+        "example": "Each participant filled out a short questionnaire.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "fill someone in on",
+        "meaning": "give someone information about something",
+        "example": "My classmate filled me in on what I had missed.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "find one's way around",
+        "meaning": "learn to navigate or understand a place",
+        "example": "It took a week to find my way around the campus.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "find out",
+        "meaning": "discover or learn information",
+        "example": "We need to find out why attendance has fallen.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "fit in",
+        "meaning": "be accepted or belong socially",
+        "example": "Joining a club helped her fit in at university.",
+        "meaning_index": 0,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "fit in",
+        "meaning": "find room or time for something",
+        "example": "Joining a club helped her fit in at university.",
+        "meaning_index": 1,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "fit in with",
+        "meaning": "match or suit something",
+        "example": "The new timetable fits in with most students' work schedules.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "fix someone up with",
+        "meaning": "arrange or provide something for someone",
+        "example": "The accommodation office fixed me up with a temporary room.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "flag up",
+        "meaning": "draw attention to something",
+        "example": "The report flags up several weaknesses in the policy.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "flock to",
+        "meaning": "go in large numbers to a place",
+        "example": "Tourists flock to the city during the summer festival.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "follow up",
+        "meaning": "take further action or investigate",
+        "example": "The researcher followed up the interview with an email.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "get a move on",
+        "meaning": "hurry or start acting quickly",
+        "example": "We need to get a move on or we will miss the campus tour.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "get accustomed to",
+        "meaning": "become used to something",
+        "example": "She quickly got accustomed to taking notes in English.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "get around",
+        "meaning": "avoid or find a way past a rule or problem",
+        "example": "Some commuters get around traffic by cycling to work.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "get away",
+        "meaning": "take a holiday or escape from routine",
+        "example": "Many students get away for a few days after exams.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "get away with",
+        "meaning": "avoid criticism or consequences",
+        "example": "Students cannot get away with copying from online sources.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "get back to",
+        "meaning": "reply or respond to someone later",
+        "example": "The admissions office promised to get back to me by Tuesday.",
+        "meaning_index": 0,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "get back to",
+        "meaning": "contact or reach someone again",
+        "example": "The admissions office promised to get back to me by Tuesday.",
+        "meaning_index": 1,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "get behind with",
+        "meaning": "fail to stay up to date with something",
+        "example": "It is easy to get behind with reading during a busy semester.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "get by",
+        "meaning": "manage with limited ability or resources",
+        "example": "He can get by in French, but he is not fluent.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "get down",
+        "meaning": "write or note something",
+        "example": "I tried to get down the speaker's main points.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "get going",
+        "meaning": "start or begin operating",
+        "example": "The discussion got going after the first question.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "get hold of",
+        "meaning": "obtain or access something",
+        "example": "I could not get hold of the textbook until the library reopened.",
+        "meaning_index": 0,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "get hold of",
+        "meaning": "contact or reach someone",
+        "example": "I could not get hold of the textbook until the library reopened.",
+        "meaning_index": 1,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "get in touch with",
+        "meaning": "contact someone",
+        "example": "You should get in touch with the housing office today.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "get into",
+        "meaning": "gain admission or access to a place or institution",
+        "example": "She got into a highly competitive medical programme.",
+        "meaning_index": 0,
+        "total_meanings": 3
+    },
+    {
+        "phrase": "get into",
+        "meaning": "enter a field, course, or programme",
+        "example": "She got into a highly competitive medical programme.",
+        "meaning_index": 1,
+        "total_meanings": 3
+    },
+    {
+        "phrase": "get into",
+        "meaning": "develop a habit or become involved in something",
+        "example": "She got into a highly competitive medical programme.",
+        "meaning_index": 2,
+        "total_meanings": 3
+    },
+    {
+        "phrase": "get into shape",
+        "meaning": "become physically fit",
+        "example": "He joined the gym to get into shape before the charity run.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "get mixed up",
+        "meaning": "become confused",
+        "example": "I got mixed up and went to the wrong lecture room.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "get on",
+        "meaning": "make progress or continue",
+        "example": "How are you getting on with your research proposal?",
+        "meaning_index": 0,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "get on",
+        "meaning": "board a vehicle",
+        "example": "How are you getting on with your research proposal?",
+        "meaning_index": 1,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "get on to",
+        "meaning": "move to a new topic",
+        "example": "After discussing costs, the speaker got on to safety issues.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "get on with",
+        "meaning": "continue or make progress in a task",
+        "example": "I need to get on with my essay before the deadline.",
+        "meaning_index": 0,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "get on with",
+        "meaning": "have a good relationship with someone",
+        "example": "I need to get on with my essay before the deadline.",
+        "meaning_index": 1,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "get one's hands dirty",
+        "meaning": "become practically involved in work",
+        "example": "Engineering students must get their hands dirty in the workshop.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "get out of hand",
+        "meaning": "become uncontrolled",
+        "example": "The discussion got out of hand when too many people spoke at once.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "get over",
+        "meaning": "accept or stop being troubled by something",
+        "example": "It took him time to get over the disappointment of failing the test.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "get rid of",
+        "meaning": "dispose of or remove",
+        "example": "The college wants to get rid of single-use plastic cups.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "get something down to",
+        "meaning": "reduce something to a lower amount",
+        "example": "The editor got the article down to 800 words.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "get something moving",
+        "meaning": "start a process or make it progress",
+        "example": "A clear deadline helped get the project moving.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "get something out of",
+        "meaning": "gain benefit or value from something",
+        "example": "I got a lot out of the pronunciation workshop.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "get started",
+        "meaning": "begin",
+        "example": "It is easier to get started when you break the task into stages.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "get stuck",
+        "meaning": "be unable to continue",
+        "example": "Ask your tutor for help if you get stuck on the assignment.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "get to grips with",
+        "meaning": "begin to understand or deal with something difficult",
+        "example": "Students need time to get to grips with academic referencing.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "get to know",
+        "meaning": "become familiar or acquainted with someone",
+        "example": "Group projects help students get to know one another.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "get under control",
+        "meaning": "bring into a manageable state",
+        "example": "The organisers got the crowd under control before the event began.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "get up to speed with",
+        "meaning": "become familiar or competent with something",
+        "example": "New staff must get up to speed with the booking system.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "get used to",
+        "meaning": "become accustomed to something",
+        "example": "It took me a month to get used to the local accent.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "get wear out of",
+        "meaning": "get practical use from clothing or fabric",
+        "example": "You will get more wear out of a plain jacket than a formal suit.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "give away",
+        "meaning": "give something without asking for payment",
+        "example": "The library gave away old magazines at the end of term.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "give in",
+        "meaning": "stop resisting or yield",
+        "example": "The company gave in after customers complained about the fees.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "give it a go",
+        "meaning": "try something",
+        "example": "I had never joined a debate before, but I decided to give it a go.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "give out",
+        "meaning": "distribute",
+        "example": "The teacher gave out worksheets before the listening activity.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "give priority to",
+        "meaning": "treat something as more important",
+        "example": "The council gives priority to affordable housing projects.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "give something a miss",
+        "meaning": "decide not to do something",
+        "example": "I gave the lecture a miss because I was ill.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "give up",
+        "meaning": "stop doing or trying something",
+        "example": "Many people give up exercise when their workload increases.",
+        "meaning_index": 0,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "give up",
+        "meaning": "quit, relinquish, or sacrifice something",
+        "example": "Many people give up exercise when their workload increases.",
+        "meaning_index": 1,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "go about",
+        "meaning": "begin dealing with or carrying out something",
+        "example": "The guide explains how to go about applying for a visa.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "go ahead",
+        "meaning": "proceed",
+        "example": "The field trip will go ahead despite the rain.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "go ahead with",
+        "meaning": "proceed with an action or arrangement",
+        "example": "The university went ahead with the new accommodation plan.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "go along",
+        "meaning": "continue or proceed as something happens",
+        "example": "We made small changes as the project went along.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "go around",
+        "meaning": "behave or spend time in a particular way",
+        "example": "He went around asking everyone for feedback on his survey.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "go blank",
+        "meaning": "become unable to think or remember",
+        "example": "My mind went blank during the speaking test.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "go down",
+        "meaning": "decrease",
+        "example": "Applications went down after the fees increased.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "go down well with",
+        "meaning": "be received positively by someone",
+        "example": "The new timetable went down well with part-time students.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "go for",
+        "meaning": "choose or select an option",
+        "example": "I decided to go for the course with more practical training.",
+        "meaning_index": 0,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "go for",
+        "meaning": "attend or take part in something",
+        "example": "I decided to go for the course with more practical training.",
+        "meaning_index": 1,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "go in for",
+        "meaning": "choose or take part in a type of work or activity",
+        "example": "Few students go in for competitive debating at first.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "go into",
+        "meaning": "discuss or examine a subject in detail",
+        "example": "The article goes into the causes of childhood obesity.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "go into decline",
+        "meaning": "begin declining",
+        "example": "The town went into decline after the factory closed.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "go missing",
+        "meaning": "disappear or become lost",
+        "example": "Several files went missing during the office move.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "go off",
+        "meaning": "sound suddenly or explode",
+        "example": "The alarm went off during the lecture.",
+        "meaning_index": 0,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "go off",
+        "meaning": "be activated or triggered",
+        "example": "The alarm went off during the lecture.",
+        "meaning_index": 1,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "go on",
+        "meaning": "happen or take place",
+        "example": "A lot of research goes on in that laboratory.",
+        "meaning_index": 0,
+        "total_meanings": 3
+    },
+    {
+        "phrase": "go on",
+        "meaning": "continue or proceed",
+        "example": "A lot of research goes on in that laboratory.",
+        "meaning_index": 1,
+        "total_meanings": 3
+    },
+    {
+        "phrase": "go on",
+        "meaning": "be spent on something",
+        "example": "A lot of research goes on in that laboratory.",
+        "meaning_index": 2,
+        "total_meanings": 3
+    },
+    {
+        "phrase": "go on and",
+        "meaning": "continue and then do something else",
+        "example": "She finished her degree and went on and started a small business.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "go on to",
+        "meaning": "proceed to the next thing",
+        "example": "The speaker went on to explain the survey results.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "go over",
+        "meaning": "review or examine carefully",
+        "example": "We went over the essay plan before writing the final draft.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "go through",
+        "meaning": "review, discuss, or examine step by step",
+        "example": "The tutor went through the marking criteria with the class.",
+        "meaning_index": 0,
+        "total_meanings": 3
+    },
+    {
+        "phrase": "go through",
+        "meaning": "experience or undergo something difficult",
+        "example": "The tutor went through the marking criteria with the class.",
+        "meaning_index": 1,
+        "total_meanings": 3
+    },
+    {
+        "phrase": "go through",
+        "meaning": "complete or continue through a process",
+        "example": "The tutor went through the marking criteria with the class.",
+        "meaning_index": 2,
+        "total_meanings": 3
+    },
+    {
+        "phrase": "go to plan",
+        "meaning": "happen as intended",
+        "example": "The experiment did not go to plan because the equipment failed.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "go together",
+        "meaning": "fit or be naturally associated",
+        "example": "Good planning and high scores often go together.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "go under",
+        "meaning": "fail financially or go bankrupt",
+        "example": "Several small travel agencies went under during the recession.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "go up",
+        "meaning": "increase",
+        "example": "The number of international students has gone up steadily.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "go with",
+        "meaning": "choose or accept a suggestion",
+        "example": "We decided to go with the cheaper accommodation option.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "go without",
+        "meaning": "manage without having something",
+        "example": "Some students go without breakfast to save time.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "go wrong",
+        "meaning": "fail or develop a problem",
+        "example": "If anything goes wrong, contact the course office immediately.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "grow into",
+        "meaning": "develop or become something over time",
+        "example": "The small workshop grew into a national training programme.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "grow up",
+        "meaning": "become an adult",
+        "example": "Children who grow up in bilingual homes often switch languages easily.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "grow up with",
+        "meaning": "have something as part of one's childhood",
+        "example": "She grew up with computers and adapts quickly to new software.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "hand in",
+        "meaning": "submit",
+        "example": "Please hand in your assignment before noon.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "hand out",
+        "meaning": "distribute",
+        "example": "Volunteers handed out leaflets at the open day.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "hand over to",
+        "meaning": "pass control or the speaking role to someone",
+        "example": "After the introduction, the chair handed over to the guest speaker.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "hang on",
+        "meaning": "wait briefly",
+        "example": "Hang on while I check the room number.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "hang on to",
+        "meaning": "keep or retain something",
+        "example": "Keep your receipt and hang on to it until the refund is processed.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "have a go at",
+        "meaning": "try doing something",
+        "example": "I had a go at answering the most difficult question first.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "have in mind",
+        "meaning": "be thinking of or considering something",
+        "example": "What topic do you have in mind for your presentation?",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "have to do with",
+        "meaning": "be connected with something",
+        "example": "The problem has to do with poor communication between departments.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "head off",
+        "meaning": "leave or depart",
+        "example": "We headed off to the museum after lunch.",
+        "meaning_index": 0,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "head off",
+        "meaning": "prevent something from happening",
+        "example": "We headed off to the museum after lunch.",
+        "meaning_index": 1,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "hear of",
+        "meaning": "know about the existence of someone or something",
+        "example": "Most students had never heard of the scholarship.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "hit on",
+        "meaning": "discover or think of something",
+        "example": "The team hit on a simple way to reduce waste.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "hold back",
+        "meaning": "keep something from moving forward",
+        "example": "A lack of confidence can hold back talented students.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "hold sway",
+        "meaning": "have dominant influence",
+        "example": "Traditional teaching methods still hold sway in some schools.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "hold true",
+        "meaning": "remain valid or correct",
+        "example": "The same principle holds true for online learning.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "jump in",
+        "meaning": "join a conversation suddenly",
+        "example": "During the discussion, she jumped in with a useful example.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "keep an eye on",
+        "meaning": "watch or supervise",
+        "example": "Please keep an eye on your belongings in the exam hall.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "keep an eye open for",
+        "meaning": "watch carefully for something",
+        "example": "Keep an eye open for notices about room changes.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "keep away from",
+        "meaning": "prevent someone or something from going near",
+        "example": "The fence keeps visitors away from the construction site.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "keep down",
+        "meaning": "prevent something from rising",
+        "example": "Better insulation helps keep heating costs down.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "keep going",
+        "meaning": "continue",
+        "example": "Even when revision feels difficult, keep going.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "keep in mind",
+        "meaning": "remember and consider",
+        "example": "Keep in mind that the last train leaves at 10 p.m.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "keep on",
+        "meaning": "continue doing something persistently",
+        "example": "He kept on practising until his pronunciation improved.",
+        "meaning_index": 0,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "keep on",
+        "meaning": "continue wearing or leave clothing in place",
+        "example": "He kept on practising until his pronunciation improved.",
+        "meaning_index": 1,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "keep to",
+        "meaning": "continue with or follow a plan, idea, or limit",
+        "example": "Speakers must keep to the five-minute limit.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "keep track of",
+        "meaning": "monitor or keep a record of",
+        "example": "Use a planner to keep track of deadlines.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "keep up",
+        "meaning": "maintain the same speed or level",
+        "example": "She studies every day to keep up with the class.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "keep up to date",
+        "meaning": "keep current or accurate",
+        "example": "The website is updated weekly to keep information up to date.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "keep up with",
+        "meaning": "maintain the same pace or level",
+        "example": "It is hard to keep up with all the new research.",
+        "meaning_index": 0,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "keep up with",
+        "meaning": "stay current with new developments",
+        "example": "It is hard to keep up with all the new research.",
+        "meaning_index": 1,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "keep/stay in touch",
+        "meaning": "maintain or remain in contact with someone",
+        "example": "Many exchange students stay in touch after the programme ends.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "key in",
+        "meaning": "type information into a system",
+        "example": "Key in your candidate number before starting the test.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "kick off",
+        "meaning": "begin or start",
+        "example": "The conference kicks off with a talk on climate policy.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "kill off",
+        "meaning": "destroy or kill many/all of a group",
+        "example": "A severe winter killed off many young trees.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "lay hands on",
+        "meaning": "obtain or get hold of something",
+        "example": "I finally laid hands on a copy of the recommended book.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "lay on",
+        "meaning": "provide or arrange something for people",
+        "example": "The university laid on extra buses for the open day.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "lay out",
+        "meaning": "arrange or design an area",
+        "example": "The architect laid out the campus around a central garden.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "lead off",
+        "meaning": "branch away from a place or route",
+        "example": "A narrow path leads off from the main road to the lake.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "lead to",
+        "meaning": "cause or result in something",
+        "example": "Poor sleep can lead to lower concentration in class.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "leave out",
+        "meaning": "omit or exclude something",
+        "example": "Do not leave out key evidence from your essay.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "let off steam",
+        "meaning": "release energy, emotion, or tension",
+        "example": "Students often play sport to let off steam after exams.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "let out",
+        "meaning": "rent property to someone",
+        "example": "The owner lets out two rooms to students.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "let someone in",
+        "meaning": "allow someone to enter",
+        "example": "Security let us in after checking our ID cards.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "let someone into",
+        "meaning": "allow someone to be included in an activity or discussion",
+        "example": "The tutor let the new student into the research group.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "let someone know",
+        "meaning": "inform someone",
+        "example": "Please let me know if the meeting time changes.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "live on one's own",
+        "meaning": "live independently",
+        "example": "Many students live on their own for the first time at university.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "log on to",
+        "meaning": "access a computer system or website",
+        "example": "You must log on to the portal to download your results.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "look after",
+        "meaning": "take care of someone",
+        "example": "The school nurse looks after students who feel unwell.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "look ahead",
+        "meaning": "think about or plan for the future",
+        "example": "Graduates should look ahead and develop skills employers value.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "look down on",
+        "meaning": "regard as inferior",
+        "example": "Academic students should not look down on vocational training.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "look forward to",
+        "meaning": "anticipate with pleasure",
+        "example": "I look forward to attending the workshop next week.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "look into",
+        "meaning": "investigate or examine",
+        "example": "The council promised to look into complaints about bus delays.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "look out for",
+        "meaning": "watch for or try to notice something",
+        "example": "Look out for signposts when you reach the old bridge.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "look out onto / look out over",
+        "meaning": "face or have a view of something",
+        "example": "The study room looks out over the river.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "look over",
+        "meaning": "inspect or examine",
+        "example": "Could you look over my essay before I submit it?",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "look through",
+        "meaning": "examine or read quickly",
+        "example": "I looked through the notes before the seminar.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "look to",
+        "meaning": "intend or hope to do something",
+        "example": "The college is looking to expand its online courses.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "look up",
+        "meaning": "search for or find information in a source",
+        "example": "I looked up the unfamiliar term in an academic dictionary.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "lose out on",
+        "meaning": "miss or lose the chance to get something",
+        "example": "Students without internet access may lose out on learning opportunities.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "lose sight of",
+        "meaning": "forget or ignore an important point",
+        "example": "In a long essay, it is easy to lose sight of the main argument.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "make a fuss about",
+        "meaning": "complain or show excessive concern about",
+        "example": "The residents made a fuss about the late-night construction noise.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "make allowance for",
+        "meaning": "take something into consideration",
+        "example": "The timetable makes allowance for students with part-time jobs.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "make it",
+        "meaning": "manage to arrive or succeed",
+        "example": "I missed the first bus but still made it to class on time.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "make matters worse",
+        "meaning": "make a bad situation worse",
+        "example": "To make matters worse, the projector stopped working.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "make the most of",
+        "meaning": "use something to the greatest advantage",
+        "example": "She made the most of her time abroad by joining local clubs.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "make up for",
+        "meaning": "compensate for",
+        "example": "Extra reading can make up for a lack of classroom practice.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "make up one's mind",
+        "meaning": "decide",
+        "example": "He finally made up his mind to apply for engineering.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "mark down",
+        "meaning": "reduce a mark or grade",
+        "example": "Examiners may mark down answers that are off topic.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "meet up",
+        "meaning": "meet or gather",
+        "example": "We meet up every Friday to practise speaking.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "miss out / miss out on",
+        "meaning": "lose the chance to get or experience an opportunity",
+        "example": "Apply early so you do not miss out on the scholarship.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "move along",
+        "meaning": "make progress",
+        "example": "The project moved along once everyone had a clear role.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "move away from",
+        "meaning": "shift away from or stop relying on something",
+        "example": "Many schools are moving away from paper-based exams.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "move into",
+        "meaning": "shift into a new line of activity or production",
+        "example": "The company moved into educational software last year.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "move on",
+        "meaning": "leave one stage or place and continue elsewhere",
+        "example": "After discussing causes, the lecturer moved on to possible solutions.",
+        "meaning_index": 0,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "move on",
+        "meaning": "proceed to the next stage or topic",
+        "example": "After discussing causes, the lecturer moved on to possible solutions.",
+        "meaning_index": 1,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "move on to",
+        "meaning": "continue or proceed to the next place, stage, or subject",
+        "example": "Let's move on to the next section of the reading passage.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "move someone up",
+        "meaning": "promote someone or give more responsibility",
+        "example": "The manager moved her up to team leader.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "name after",
+        "meaning": "give someone or something the same name as another person or thing",
+        "example": "The new science building was named after a famous researcher.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "offload to",
+        "meaning": "transfer data or work to another system",
+        "example": "The app offloads large files to cloud storage.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "open up",
+        "meaning": "make accessible or available",
+        "example": "Online courses open up education to people in remote areas.",
+        "meaning_index": 0,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "open up",
+        "meaning": "start speaking more freely or honestly",
+        "example": "Online courses open up education to people in remote areas.",
+        "meaning_index": 1,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "opt for",
+        "meaning": "choose one option",
+        "example": "Many students opt for shared accommodation to save money.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "pass down",
+        "meaning": "hand on to a later generation",
+        "example": "Traditional skills are passed down through families.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "pass on to",
+        "meaning": "transfer or give to someone else",
+        "example": "The tutor passed the message on to the whole class.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "phase out",
+        "meaning": "gradually stop using something",
+        "example": "The school is phasing out printed handouts.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "pick oneself up",
+        "meaning": "recover from a setback and continue",
+        "example": "After failing once, she picked herself up and tried again.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "pick out",
+        "meaning": "select, identify, or recognise from a group",
+        "example": "The researcher picked out three common themes in the interviews.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "pick someone up",
+        "meaning": "collect someone, especially by vehicle",
+        "example": "The shuttle bus picks students up outside the station.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "pick someone's brains",
+        "meaning": "get ideas or information from someone",
+        "example": "I picked my tutor's brains about possible dissertation topics.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "pick up",
+        "meaning": "collect or obtain something or someone",
+        "example": "She picked up useful phrases by listening to podcasts.",
+        "meaning_index": 0,
+        "total_meanings": 3
+    },
+    {
+        "phrase": "pick up",
+        "meaning": "learn informally or acquire a skill",
+        "example": "She picked up useful phrases by listening to podcasts.",
+        "meaning_index": 1,
+        "total_meanings": 3
+    },
+    {
+        "phrase": "pick up",
+        "meaning": "notice or detect something",
+        "example": "She picked up useful phrases by listening to podcasts.",
+        "meaning_index": 2,
+        "total_meanings": 3
+    },
+    {
+        "phrase": "plan ahead",
+        "meaning": "make plans for the future",
+        "example": "Students who plan ahead usually manage deadlines better.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "plan on",
+        "meaning": "intend or expect to do something",
+        "example": "We plan on visiting the science museum after class.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "plough ahead",
+        "meaning": "continue with determination",
+        "example": "The team ploughed ahead despite the lack of funding.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "point out",
+        "meaning": "mention, indicate, or draw attention to something",
+        "example": "The examiner pointed out that the answer needed more detail.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "pop up",
+        "meaning": "appear suddenly",
+        "example": "A warning message popped up on the screen.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "pride oneself on",
+        "meaning": "feel proud about having or doing something",
+        "example": "The college prides itself on small class sizes.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "put aside",
+        "meaning": "save or reserve something for later",
+        "example": "She puts aside an hour each evening for vocabulary review.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "put down",
+        "meaning": "write, record, or list",
+        "example": "I put down the speaker's main points in my notebook.",
+        "meaning_index": 0,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "put down",
+        "meaning": "stop reading or holding something",
+        "example": "I put down the speaker's main points in my notebook.",
+        "meaning_index": 1,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "put down for / put someone down for",
+        "meaning": "record or register someone for a choice",
+        "example": "Could you put me down for the afternoon workshop?",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "put down to",
+        "meaning": "attribute to a cause",
+        "example": "The fall in attendance was put down to bad weather.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "put forward",
+        "meaning": "propose or suggest",
+        "example": "The committee put forward a plan to extend library hours.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "put in",
+        "meaning": "submit or make an official request",
+        "example": "She put in an application for a travel grant.",
+        "meaning_index": 0,
+        "total_meanings": 3
+    },
+    {
+        "phrase": "put in",
+        "meaning": "install or add something",
+        "example": "She put in an application for a travel grant.",
+        "meaning_index": 1,
+        "total_meanings": 3
+    },
+    {
+        "phrase": "put in",
+        "meaning": "contribute effort or money",
+        "example": "She put in an application for a travel grant.",
+        "meaning_index": 2,
+        "total_meanings": 3
+    },
+    {
+        "phrase": "put in touch with",
+        "meaning": "connect someone with another person",
+        "example": "The careers office put me in touch with an employer.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "put into practice",
+        "meaning": "apply or use what has been learned",
+        "example": "Students put theory into practice during the lab session.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "put off",
+        "meaning": "postpone or delay",
+        "example": "The meeting was put off until next Wednesday.",
+        "meaning_index": 0,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "put off",
+        "meaning": "discourage or deter someone",
+        "example": "The meeting was put off until next Wednesday.",
+        "meaning_index": 1,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "put on",
+        "meaning": "organise, stage, or produce a performance",
+        "example": "The drama society put on a play for charity.",
+        "meaning_index": 0,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "put on",
+        "meaning": "add to a list or wear clothing",
+        "example": "The drama society put on a play for charity.",
+        "meaning_index": 1,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "put on hold",
+        "meaning": "postpone or suspend",
+        "example": "The building project was put on hold because of rising costs.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "put on the market",
+        "meaning": "offer for sale",
+        "example": "The owner put the flat on the market in March.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "put out of a job",
+        "meaning": "make someone unemployed",
+        "example": "Automation could put some workers out of a job.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "put pressure on",
+        "meaning": "create pressure or demands on someone or something",
+        "example": "Rising rents put pressure on students with limited budgets.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "put right",
+        "meaning": "correct or fix something",
+        "example": "The technician put the sound problem right before the lecture began.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "put someone in charge of",
+        "meaning": "give someone responsibility",
+        "example": "The manager put Sofia in charge of the volunteer team.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "put someone on",
+        "meaning": "assign someone to a team or duty",
+        "example": "They put me on reception duty during the conference.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "put someone on to",
+        "meaning": "refer or connect someone to another person",
+        "example": "My teacher put me on to a useful pronunciation coach.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "put something another way",
+        "meaning": "express the same idea differently",
+        "example": "To put it another way, the data shows a clear improvement.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "put the spotlight on",
+        "meaning": "focus attention on something",
+        "example": "The documentary put the spotlight on rural education.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "put together",
+        "meaning": "create or assemble",
+        "example": "The students put together a short presentation on recycling.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "put under",
+        "meaning": "subject someone to stress or pressure",
+        "example": "Final exams put many students under considerable pressure.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "put up",
+        "meaning": "display or place where it can be seen",
+        "example": "The organisers put up signs around the campus.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "put up with",
+        "meaning": "tolerate or endure",
+        "example": "Students should not have to put up with unsafe housing.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "rely upon",
+        "meaning": "depend on",
+        "example": "Many rural communities rely upon buses for access to schools.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "ring about",
+        "meaning": "phone to ask about or discuss something",
+        "example": "I rang about the vacancy advertised on the noticeboard.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "ring back",
+        "meaning": "phone again in reply",
+        "example": "The receptionist said she would ring back after checking the file.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "round off",
+        "meaning": "finish in a satisfactory way",
+        "example": "The lecturer rounded off the talk with a summary of the findings.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "round up",
+        "meaning": "gather people or animals together",
+        "example": "The guide rounded up the group before entering the museum.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "run by",
+        "meaning": "be managed by",
+        "example": "The language centre is run by the student union.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "run down",
+        "meaning": "become neglected or in poor condition",
+        "example": "The old theatre has become run down over the years.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "run out",
+        "meaning": "become exhausted or used up",
+        "example": "The printer ran out of paper during the workshop.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "run out of",
+        "meaning": "use all of something so none is left",
+        "example": "We ran out of time before answering the final question.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "run over budget",
+        "meaning": "exceed the planned budget",
+        "example": "The renovation ran over budget because materials became more expensive.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "run through",
+        "meaning": "explain or review quickly",
+        "example": "The tutor ran through the exam instructions before we began.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "save up",
+        "meaning": "save money gradually for a purpose",
+        "example": "She saved up for a new laptop.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "search out",
+        "meaning": "find something by searching carefully",
+        "example": "Researchers searched out rare documents in local archives.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "see about",
+        "meaning": "deal with or arrange something",
+        "example": "I need to see about booking a room for the meeting.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "sell on",
+        "meaning": "sell something to another buyer after obtaining or processing it",
+        "example": "Students often sell textbooks on after finishing a course.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "sell out",
+        "meaning": "sell all available tickets or items",
+        "example": "Tickets for the lecture sold out within an hour.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "send in",
+        "meaning": "submit or deliver formally",
+        "example": "Applicants must send in their documents by the deadline.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "send off",
+        "meaning": "dispatch or send by post",
+        "example": "I sent off the visa forms last week.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "send out",
+        "meaning": "distribute or send to multiple people",
+        "example": "The department sent out an email about the timetable change.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "send someone off",
+        "meaning": "send someone away to another person or place",
+        "example": "The nurse sent me off to the clinic for a check-up.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "set about",
+        "meaning": "begin doing something",
+        "example": "The group set about collecting data for the survey.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "set aside",
+        "meaning": "reserve for a particular purpose",
+        "example": "The council set aside funds for public libraries.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "set back",
+        "meaning": "delay or hinder progress",
+        "example": "Bad weather set back the construction work by two weeks.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "set off",
+        "meaning": "start a journey",
+        "example": "We set off for the field trip at seven in the morning.",
+        "meaning_index": 0,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "set off",
+        "meaning": "trigger or cause to activate",
+        "example": "We set off for the field trip at seven in the morning.",
+        "meaning_index": 1,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "set out",
+        "meaning": "start a journey with a purpose",
+        "example": "The report sets out three options for reducing waste.",
+        "meaning_index": 0,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "set out",
+        "meaning": "arrange or present information in a clear form",
+        "example": "The report sets out three options for reducing waste.",
+        "meaning_index": 1,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "set out to",
+        "meaning": "begin with a particular aim",
+        "example": "The study set out to compare online and face-to-face learning.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "set up",
+        "meaning": "establish, create, or arrange something",
+        "example": "The university set up a new research centre.",
+        "meaning_index": 0,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "set up",
+        "meaning": "prepare equipment for use",
+        "example": "The university set up a new research centre.",
+        "meaning_index": 1,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "show someone around",
+        "meaning": "guide someone through a place",
+        "example": "A student volunteer showed us around the campus.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "show up",
+        "meaning": "arrive or appear, often unexpectedly",
+        "example": "Only half the group showed up for the rehearsal.",
+        "meaning_index": 0,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "show up",
+        "meaning": "reveal or make flaws visible",
+        "example": "Only half the group showed up for the rehearsal.",
+        "meaning_index": 1,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "shut down",
+        "meaning": "close or stop operating",
+        "example": "The factory shut down after losing its main contract.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "sign up",
+        "meaning": "register",
+        "example": "Hundreds of students signed up during orientation week.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "sign up for",
+        "meaning": "register for something",
+        "example": "I signed up for an online speaking course.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "sit back",
+        "meaning": "wait passively or relax",
+        "example": "We cannot sit back and ignore the problem.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "sit in on",
+        "meaning": "attend as an observer",
+        "example": "I sat in on a history lecture before choosing my modules.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "snap up",
+        "meaning": "take or buy something quickly before others can",
+        "example": "The cheapest rooms were snapped up within minutes.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "sort out",
+        "meaning": "solve, organise, or deal with a problem",
+        "example": "The administrator sorted out the error in my timetable.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "speak out",
+        "meaning": "speak openly or confidently",
+        "example": "Students spoke out against the increase in fees.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "speak up",
+        "meaning": "speak more openly or assertively",
+        "example": "She finally spoke up during the group discussion.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "spiral out of control",
+        "meaning": "become uncontrollable",
+        "example": "Costs can spiral out of control without careful planning.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "stand a chance of",
+        "meaning": "have a possibility of success",
+        "example": "Small businesses stand a chance of surviving if rents are reduced.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "stand for",
+        "meaning": "be a candidate in an election",
+        "example": "He plans to stand for president of the student union.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "stand in for",
+        "meaning": "substitute for someone",
+        "example": "A teaching assistant stood in for the lecturer.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "stand out",
+        "meaning": "be noticeable, prominent, or different from others",
+        "example": "Her application stood out because of her volunteer experience.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "start off",
+        "meaning": "begin",
+        "example": "The lesson started off with a short quiz.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "start off with",
+        "meaning": "begin with",
+        "example": "The presentation started off with a surprising statistic.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "start out",
+        "meaning": "begin a journey, activity, or process",
+        "example": "She started out as a laboratory assistant.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "start over",
+        "meaning": "begin again",
+        "example": "When the recording failed, we had to start over.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "stick to",
+        "meaning": "keep to or follow something",
+        "example": "Stick to the word limit in the writing task.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "stock up with",
+        "meaning": "get or store a supply of something",
+        "example": "The cafeteria stocked up with snacks before exam week.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "suck up",
+        "meaning": "absorb or take in",
+        "example": "Wet soil sucks up rainwater quickly.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "sum up",
+        "meaning": "summarise",
+        "example": "The final paragraph sums up the main argument.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "surface in",
+        "meaning": "appear or become noticeable in",
+        "example": "Similar concerns surfaced in several student interviews.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "switch off",
+        "meaning": "stop an electrical device operating",
+        "example": "Please switch off your phone before the exam starts.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "switch on",
+        "meaning": "turn on an electrical device",
+        "example": "Switch on the projector before opening the slides.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "switch to",
+        "meaning": "change to a different activity or thing",
+        "example": "Many commuters switched to cycling after the bus strike.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "take advantage of",
+        "meaning": "use an opportunity or benefit",
+        "example": "Students should take advantage of free language support.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "take back",
+        "meaning": "return something to a shop or place",
+        "example": "I took the faulty headset back to the store.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "take care of",
+        "meaning": "look after, care for, or handle something or someone",
+        "example": "The events team will take care of the bookings.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "take down",
+        "meaning": "write or record information",
+        "example": "The assistant took down my phone number.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "take for granted",
+        "meaning": "treat as normal and fail to value",
+        "example": "Many people take clean water for granted.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "take in",
+        "meaning": "understand or absorb information",
+        "example": "The lecture covered so much that it was hard to take in.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "take into account / take into consideration",
+        "meaning": "consider when deciding",
+        "example": "The examiner takes pronunciation into account when scoring speaking.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "take it easy",
+        "meaning": "relax or avoid working too hard",
+        "example": "After the final exam, she decided to take it easy for a few days.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "take note of",
+        "meaning": "pay attention to something",
+        "example": "Take note of the deadline printed at the top of the form.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "take off",
+        "meaning": "become successful or popular quickly",
+        "example": "Online tutoring took off during the lockdown period.",
+        "meaning_index": 0,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "take off",
+        "meaning": "spend time away from work or study",
+        "example": "Online tutoring took off during the lockdown period.",
+        "meaning_index": 1,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "take on",
+        "meaning": "accept a job, responsibility, or challenge",
+        "example": "The department took on two new researchers.",
+        "meaning_index": 0,
+        "total_meanings": 3
+    },
+    {
+        "phrase": "take on",
+        "meaning": "employ or hire someone",
+        "example": "The department took on two new researchers.",
+        "meaning_index": 1,
+        "total_meanings": 3
+    },
+    {
+        "phrase": "take on",
+        "meaning": "acquire or adopt a quality or meaning",
+        "example": "The department took on two new researchers.",
+        "meaning_index": 2,
+        "total_meanings": 3
+    },
+    {
+        "phrase": "take on board",
+        "meaning": "accept, understand, and consider something",
+        "example": "The team took the feedback on board and revised the design.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "take out",
+        "meaning": "arrange or buy insurance or cover",
+        "example": "Students should take out travel insurance before studying abroad.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "take over",
+        "meaning": "gain or assume control or responsibility",
+        "example": "A new director took over the project in January.",
+        "meaning_index": 0,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "take over",
+        "meaning": "continue from where someone else left off",
+        "example": "A new director took over the project in January.",
+        "meaning_index": 1,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "take part in",
+        "meaning": "participate in",
+        "example": "More than 200 students took part in the survey.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "take pity on",
+        "meaning": "feel sympathy for someone and help",
+        "example": "The librarian took pity on me and extended the loan.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "take place",
+        "meaning": "happen or occur",
+        "example": "The exam will take place in the main hall.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "take possession of",
+        "meaning": "gain legal ownership or control",
+        "example": "The university took possession of the building last year.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "take someone out",
+        "meaning": "transport someone away or take them on an excursion",
+        "example": "The host family took the exchange students out for dinner.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "take someone round",
+        "meaning": "guide or show someone around a place",
+        "example": "A guide took us round the old town.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "take someone through",
+        "meaning": "guide someone step by step",
+        "example": "The adviser took me through the application process.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "take the lead",
+        "meaning": "take charge or assume leadership",
+        "example": "The research institute took the lead in developing the vaccine.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "take time off",
+        "meaning": "spend time away from work or study",
+        "example": "She took time off to recover from stress.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "take time out",
+        "meaning": "pause or set aside time from other activity",
+        "example": "He took time out from his career to travel.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "take up",
+        "meaning": "accept an opportunity or offer",
+        "example": "Many students take up volunteering while at university.",
+        "meaning_index": 0,
+        "total_meanings": 3
+    },
+    {
+        "phrase": "take up",
+        "meaning": "begin an activity or hobby",
+        "example": "Many students take up volunteering while at university.",
+        "meaning_index": 1,
+        "total_meanings": 3
+    },
+    {
+        "phrase": "take up",
+        "meaning": "occupy space or time",
+        "example": "Many students take up volunteering while at university.",
+        "meaning_index": 2,
+        "total_meanings": 3
+    },
+    {
+        "phrase": "take up to",
+        "meaning": "require as much as a particular amount of time",
+        "example": "The journey can take up to two hours during rush hour.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "talk over",
+        "meaning": "discuss in order to decide or understand",
+        "example": "We talked over the proposal before sending it to the tutor.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "talk through / talk someone through",
+        "meaning": "explain something step by step",
+        "example": "The technician talked me through the software update.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "tell something from something",
+        "meaning": "distinguish one thing from another",
+        "example": "It is hard to tell one species from another without training.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "think ahead",
+        "meaning": "plan or consider the future in advance",
+        "example": "Students who think ahead are less likely to miss deadlines.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "think for oneself",
+        "meaning": "think independently",
+        "example": "University study encourages students to think for themselves.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "think nothing of",
+        "meaning": "regard as normal or not hesitate about something",
+        "example": "Some commuters think nothing of travelling two hours to work.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "think of",
+        "meaning": "bring an idea to mind or consider",
+        "example": "Can you think of a better example for this paragraph?",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "think up",
+        "meaning": "invent or create an idea",
+        "example": "The team thought up a low-cost way to collect rainwater.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "throw away",
+        "meaning": "discard or get rid of something",
+        "example": "Cafes throw away a lot of food at the end of the day.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "tick off",
+        "meaning": "mark items on a list as completed or seen",
+        "example": "I ticked off each task as I finished it.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "tire out",
+        "meaning": "make very tired",
+        "example": "Long commutes can tire out students before classes even begin.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "top up",
+        "meaning": "add credit, money, or supply to something",
+        "example": "You can top up your travel card at the station.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "touch on",
+        "meaning": "mention briefly",
+        "example": "The lecture touched on the effects of tourism on local culture.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "touch up",
+        "meaning": "improve or retouch small details",
+        "example": "The designer touched up the photos before publication.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "track down",
+        "meaning": "locate after searching",
+        "example": "The researcher tracked down the original interview recordings.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "try out",
+        "meaning": "test by using",
+        "example": "The class tried out a new note-taking app.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "turn attention to",
+        "meaning": "begin considering or discussing a subject",
+        "example": "The report then turns attention to possible solutions.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "turn back",
+        "meaning": "restore or return something to an earlier state",
+        "example": "No policy can turn back the effects of decades of pollution overnight.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "turn down",
+        "meaning": "reject an offer or proposal",
+        "example": "She turned down the job offer because it was too far away.",
+        "meaning_index": 0,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "turn down",
+        "meaning": "reduce volume or intensity",
+        "example": "She turned down the job offer because it was too far away.",
+        "meaning_index": 1,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "turn into",
+        "meaning": "become, change, or transform into another form",
+        "example": "The old warehouse turned into a popular arts centre.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "turn off",
+        "meaning": "leave one road for another",
+        "example": "Technical jargon can turn off a general audience.",
+        "meaning_index": 0,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "turn off",
+        "meaning": "stop a device or make someone lose interest",
+        "example": "Technical jargon can turn off a general audience.",
+        "meaning_index": 1,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "turn out",
+        "meaning": "prove to be or result in a particular way",
+        "example": "The experiment turned out better than expected.",
+        "meaning_index": 0,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "turn out",
+        "meaning": "produce or manufacture",
+        "example": "The experiment turned out better than expected.",
+        "meaning_index": 1,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "turn over to",
+        "meaning": "change something for a new use",
+        "example": "The old factory was turned over to community workshops.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "turn to",
+        "meaning": "seek help or information from someone or something",
+        "example": "Many students turn to online videos for extra practice.",
+        "meaning_index": 0,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "turn to",
+        "meaning": "begin discussing or dealing with a new subject",
+        "example": "Many students turn to online videos for extra practice.",
+        "meaning_index": 1,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "turn up",
+        "meaning": "arrive or appear",
+        "example": "Several useful sources turned up during my search.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "use up",
+        "meaning": "consume completely",
+        "example": "The project used up most of the department's budget.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "vouch for",
+        "meaning": "confirm someone's character or reliability",
+        "example": "My supervisor can vouch for the quality of my work.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "wash up",
+        "meaning": "be carried onto the shore by water",
+        "example": "Plastic waste often washes up on beaches after storms.",
+        "meaning_index": 0,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "wash up",
+        "meaning": "wash dishes after a meal",
+        "example": "Plastic waste often washes up on beaches after storms.",
+        "meaning_index": 1,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "watch out",
+        "meaning": "be careful or alert",
+        "example": "Watch out for misleading information in online articles.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "watch out for",
+        "meaning": "look carefully for something expected",
+        "example": "Watch out for changes in the exam timetable.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "watch over",
+        "meaning": "guard or supervise",
+        "example": "Trained staff watch over children during the activity.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "wipe out",
+        "meaning": "destroy or eliminate completely",
+        "example": "A single flood can wipe out crops in low-lying areas.",
+        "meaning_index": 0,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "wipe out",
+        "meaning": "clean the inside of something by wiping",
+        "example": "A single flood can wipe out crops in low-lying areas.",
+        "meaning_index": 1,
+        "total_meanings": 2
+    },
+    {
+        "phrase": "work on",
+        "meaning": "try to improve or develop something",
+        "example": "She is working on her pronunciation before the speaking test.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "work out",
+        "meaning": "figure out, solve, or understand something",
+        "example": "We worked out the average score from the survey data.",
+        "meaning_index": 0,
+        "total_meanings": 3
+    },
+    {
+        "phrase": "work out",
+        "meaning": "do physical exercise",
+        "example": "We worked out the average score from the survey data.",
+        "meaning_index": 1,
+        "total_meanings": 3
+    },
+    {
+        "phrase": "work out",
+        "meaning": "end successfully or turn out well",
+        "example": "We worked out the average score from the survey data.",
+        "meaning_index": 2,
+        "total_meanings": 3
+    },
+    {
+        "phrase": "work out at",
+        "meaning": "amount to a particular total",
+        "example": "The rent works out at about 500 pounds a month.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "work through",
+        "meaning": "study, present, or deal with something systematically",
+        "example": "The class worked through the sample questions together.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    },
+    {
+        "phrase": "write up",
+        "meaning": "write something in a complete or final form",
+        "example": "After collecting the data, she wrote up the research report.",
+        "meaning_index": 0,
+        "total_meanings": 1
+    }
+]
