@@ -11,6 +11,8 @@ node_modules/
 src/english_practice_web/ui/dist/
 
 # ── Data ──
+*.db-shm
+*.db-wal
 
 # ── OS ──
 .DS_Store

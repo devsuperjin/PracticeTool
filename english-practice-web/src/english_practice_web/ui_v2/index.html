@@ -9,12 +9,29 @@
   </head>
   <body>
     <div class="app-shell">
-      <aside class="sidebar" aria-label="Word list">
-        <div class="sidebar-head">
+      <header class="topbar">
+        <div class="nav-brand" aria-label="English Practice">
+          <span class="nav-logo">EP</span>
           <div>
-            <p class="eyebrow">PracticeTool</p>
-            <h1>Word List</h1>
+            <strong>English Practice</strong>
+            <span>PracticeTool v2</span>
           </div>
+        </div>
+        <nav class="tabs" aria-label="Main views">
+          <button class="tab-btn" type="button" data-view-tab="dashboard">Dashboard</button>
+          <button class="tab-btn" type="button" data-view-tab="practice">Practice</button>
+          <button class="tab-btn" type="button" data-view-tab="recite">Recite</button>
+          <button class="tab-btn" type="button" data-view-tab="review">Review</button>
+          <button class="tab-btn" type="button" data-view-tab="select">Select</button>
+        </nav>
+        <div class="topbar-status">
+          <span id="statusText">Loading</span>
+          <button id="logoutButton" class="logout-btn" type="button" hidden>Logout</button>
+        </div>
+      </header>
+
+      <aside class="sidebar" aria-label="Vocabulary list">
+        <div id="sidebarHead" class="sidebar-head" hidden>
           <span id="activePlanBadge" class="plan-badge" hidden></span>
         </div>
 
@@ -23,18 +40,86 @@
       </aside>
 
       <div class="app-frame">
-        <header class="topbar">
-          <nav class="tabs" aria-label="Main views">
-            <button class="tab-btn" type="button" data-view-tab="practice">Practice</button>
-            <button class="tab-btn" type="button" data-view-tab="recite">Recite</button>
-            <button class="tab-btn" type="button" data-view-tab="select">Select</button>
-          </nav>
-          <div class="topbar-status">
-            <span id="statusText">Loading</span>
-          </div>
-        </header>
-
         <main id="mainShell" class="main-shell">
+          <section id="page-dashboard" class="page dashboard-page" aria-labelledby="dashboardTitle">
+            <div class="dashboard-grid">
+              <article class="surface dashboard-hero">
+                <div class="dashboard-title-row">
+                  <div>
+                    <p class="eyebrow">Today</p>
+                    <h2 id="dashboardTitle">Dashboard</h2>
+                  </div>
+                  <span id="dashboardSession" class="review-session">Open session</span>
+                </div>
+                <p id="dashboardSubline" class="dashboard-subline">Loading your study queue...</p>
+                <div class="dashboard-metrics" aria-label="Study metrics">
+                  <div class="metric-card">
+                    <span>Total Words</span>
+                    <b id="dashboardTotalWords">0</b>
+                  </div>
+                  <div class="metric-card">
+                    <span>Due Now</span>
+                    <b id="dashboardDue">0</b>
+                  </div>
+                  <div class="metric-card">
+                    <span>Weak Items</span>
+                    <b id="dashboardWeak">0</b>
+                  </div>
+                  <div class="metric-card">
+                    <span>New Items</span>
+                    <b id="dashboardNew">0</b>
+                  </div>
+                </div>
+                <div class="action-row">
+                  <button id="dashboardStartReview" class="btn btn-primary" type="button">Start Review</button>
+                  <button id="dashboardStartPractice" class="btn" type="button">Practice Current</button>
+                  <button id="dashboardManagePlans" class="btn" type="button">Manage Plans</button>
+                </div>
+              </article>
+
+              <article class="surface dashboard-panel">
+                <div class="panel-head">
+                  <div>
+                    <p class="eyebrow">Focus</p>
+                    <h3>Review Queue</h3>
+                  </div>
+                  <button id="dashboardRefresh" class="icon-btn" type="button" aria-label="Refresh dashboard">r</button>
+                </div>
+                <div id="dashboardQueueList" class="dashboard-list"></div>
+              </article>
+
+              <article class="surface dashboard-panel">
+                <div class="panel-head">
+                  <div>
+                    <p class="eyebrow">Progress</p>
+                    <h3>Memory Snapshot</h3>
+                  </div>
+                </div>
+                <div class="progress-stack">
+                  <div>
+                    <div class="progress-label"><span>Marked</span><b id="dashboardMarked">0%</b></div>
+                    <div class="progress-track"><span id="dashboardMarkedBar"></span></div>
+                  </div>
+                  <div>
+                    <div class="progress-label"><span>Known Rate</span><b id="dashboardKnownRate">0%</b></div>
+                    <div class="progress-track"><span id="dashboardKnownBar"></span></div>
+                  </div>
+                </div>
+                <p id="dashboardPlan" class="dashboard-note">All words active</p>
+              </article>
+
+              <article class="surface dashboard-panel">
+                <div class="panel-head">
+                  <div>
+                    <p class="eyebrow">Weak Spots</p>
+                    <h3>Needs Attention</h3>
+                  </div>
+                </div>
+                <div id="dashboardWeakList" class="dashboard-list"></div>
+              </article>
+            </div>
+          </section>
+
           <section id="page-practice" class="page work-page" aria-labelledby="practiceTitle">
             <article class="surface">
               <div class="page-control">
@@ -87,6 +172,77 @@
             </article>
           </section>
 
+          <section id="page-review" class="page work-page" aria-labelledby="reviewTitle">
+            <article class="surface review-surface">
+              <div class="review-top">
+                <div>
+                  <p class="eyebrow">Spaced Review</p>
+                  <h2 id="reviewTitle">Review Queue</h2>
+                </div>
+                <span id="reviewPosition" class="position-pill">0 / 0</span>
+              </div>
+
+              <div class="review-stats" aria-label="Review summary">
+                <span><b id="reviewDueCount">0</b> Due</span>
+                <span><b id="reviewWeakCount">0</b> Weak</span>
+                <span><b id="reviewNewCount">0</b> New</span>
+                <span><b id="reviewLaterCount">0</b> Later</span>
+              </div>
+
+              <div class="review-toolbar">
+                <label class="control review-control">
+                  <span>Mode</span>
+                  <select id="reviewMode" class="input">
+                    <option value="balanced">Balanced</option>
+                    <option value="aggressive">Aggressive</option>
+                  </select>
+                </label>
+                <label class="control review-control">
+                  <span>Time</span>
+                  <select id="reviewMinutes" class="input">
+                    <option value="0">Open</option>
+                    <option value="5">5 min</option>
+                    <option value="10">10 min</option>
+                    <option value="20">20 min</option>
+                    <option value="30">30 min</option>
+                    <option value="45">45 min</option>
+                    <option value="60">60 min</option>
+                  </select>
+                </label>
+                <div class="segmented" role="group" aria-label="Review filter">
+                  <button class="segment active" type="button" data-review-filter="due">Due</button>
+                  <button class="segment" type="button" data-review-filter="weak">Weak</button>
+                  <button class="segment" type="button" data-review-filter="new">New</button>
+                  <button class="segment" type="button" data-review-filter="all">All</button>
+                </div>
+                <span id="reviewSessionText" class="review-session">Open session</span>
+                <button id="reviewRefresh" class="btn" type="button">Refresh</button>
+              </div>
+
+              <div id="reviewEmpty" class="empty-state">No review items yet.</div>
+              <div id="reviewBody" hidden>
+                <div class="review-card-head">
+                  <span id="reviewBucket" class="review-bucket">Due</span>
+                  <span id="reviewMeta" class="review-meta"></span>
+                </div>
+                <h3 id="reviewPhrase" class="phrase-title"></h3>
+                <p class="review-prompt">Recall the meaning before revealing it.</p>
+                <div id="reviewMeaning" class="meaning-item review-meaning" hidden>
+                  <span id="reviewMeaningIndex" class="meaning-index"></span>
+                  <span id="reviewMeaningText" class="meaning-text"></span>
+                </div>
+                <p class="meta-row"><span>Example</span><b id="reviewExample"></b></p>
+                <div class="action-row">
+                  <button id="reviewPrev" class="btn" type="button">Previous</button>
+                  <button id="reviewReveal" class="btn btn-primary" type="button">Show Meaning</button>
+                  <button id="reviewKnown" class="btn btn-success" type="button">Known</button>
+                  <button id="reviewUnknown" class="btn btn-danger" type="button">Unknown</button>
+                  <button id="reviewNext" class="btn" type="button">Next</button>
+                </div>
+              </div>
+            </article>
+          </section>
+
           <section id="page-select" class="page select-page" aria-labelledby="selectTitle">
             <div class="select-head">
               <div>
@@ -102,8 +258,10 @@
               <label class="control">
                 <span>Default</span>
                 <select id="defaultView" class="input">
+                  <option value="dashboard">Dashboard</option>
                   <option value="practice">Practice</option>
                   <option value="recite">Recite</option>
+                  <option value="review">Review</option>
                 </select>
               </label>
               <label class="control wide">
@@ -146,6 +304,19 @@
           </aside>
         </main>
       </div>
+    </div>
+
+    <div id="loginOverlay" class="auth-overlay" hidden>
+      <form id="loginForm" class="auth-card" autocomplete="on">
+        <p class="eyebrow">Secure Access</p>
+        <h1>Sign in</h1>
+        <label class="field-label" for="loginUsername">Username</label>
+        <input id="loginUsername" class="input" type="text" autocomplete="username" value="admin">
+        <label class="field-label" for="loginPassword">Password</label>
+        <input id="loginPassword" class="input" type="password" autocomplete="current-password" placeholder="admin">
+        <p id="loginError" class="auth-error" hidden></p>
+        <button id="loginButton" class="btn btn-primary" type="submit">Sign in</button>
+      </form>
     </div>
 
     <div id="modalOverlay" class="modal-overlay" hidden>

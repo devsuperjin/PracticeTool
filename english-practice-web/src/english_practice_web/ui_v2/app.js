@@ -2,21 +2,29 @@
   "use strict";
 
   const API_BASE = "/api/v1";
+  const AUTH_TOKEN_KEY = "englishPracticeToken";
   const ALPHA = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i));
-  const VALID_VIEWS = new Set(["practice", "recite", "select"]);
+  const VALID_VIEWS = new Set(["dashboard", "practice", "recite", "review", "select"]);
 
   const state = {
     phrases: [],
     notesCache: {},
     marksCache: {},
+    reviewItems: [],
+    reviewSummary: {},
     plans: [],
     activePlan: null,
     currentPhrase: null,
     view: "practice",
     selectFilter: "all",
+    reviewFilter: "due",
+    reviewMode: localStorage.getItem("reviewMode") || "balanced",
+    reviewMinutes: Number(localStorage.getItem("reviewMinutes") || 0),
+    currentReviewKey: null,
     selectedSet: new Set(),
     collapsed: {},
     revealed: false,
+    reviewRevealed: false,
     practiceFeedback: "",
     reciteFeedback: "",
     modal: { mode: "add", note: null },
@@ -26,10 +34,18 @@
   let toastTimer = 0;
 
   const api = {
+    login: (username, password) =>
+      fetchJson(`${API_BASE}/auth/login`, {
+        method: "POST",
+        auth: false,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
+      }),
     listPhrases: () => fetchJson(`${API_BASE}/list`),
     listNotes: () => fetchJson(`${API_BASE}/notes`),
     listPlans: () => fetchJson(`${API_BASE}/plans`),
     listMarks: () => fetchJson(`${API_BASE}/marks`),
+    listReview: () => fetchJson(`${API_BASE}/review?${reviewQuery()}`),
     createNote: (phrase, note) =>
       fetchJson(`${API_BASE}/notes`, {
         method: "POST",
@@ -76,13 +92,19 @@
   async function init() {
     cacheRefs();
     bindEvents();
-    refs.defaultView.value = localStorage.getItem("defaultView") || "practice";
+    refs.defaultView.value = localStorage.getItem("defaultView") || "dashboard";
+    refs.reviewMode.value = state.reviewMode;
+    refs.reviewMinutes.value = String(state.reviewMinutes);
+
+    if (!authToken()) {
+      setView(normalizeView(location.hash.slice(1) || refs.defaultView.value), { updateHash: !location.hash });
+      renderAll();
+      showLogin();
+      return;
+    }
 
     try {
-      await loadData();
-      const initialView = normalizeView(location.hash.slice(1) || refs.defaultView.value);
-      setView(initialView, { updateHash: !location.hash });
-      renderAll();
+      await bootAuthenticated();
     } catch (err) {
       showToast(`Failed to load UI data: ${err.message}`);
       renderAll();
@@ -94,12 +116,33 @@
     refs.wordList = $("#wordList");
     refs.activePlanBadge = $("#activePlanBadge");
     refs.statusText = $("#statusText");
+    refs.logoutButton = $("#logoutButton");
     refs.mainShell = $("#mainShell");
+    refs.sidebarHead = $("#sidebarHead");
     refs.pages = {
+      dashboard: $("#page-dashboard"),
       practice: $("#page-practice"),
       recite: $("#page-recite"),
+      review: $("#page-review"),
       select: $("#page-select"),
     };
+    refs.dashboardSubline = $("#dashboardSubline");
+    refs.dashboardSession = $("#dashboardSession");
+    refs.dashboardTotalWords = $("#dashboardTotalWords");
+    refs.dashboardDue = $("#dashboardDue");
+    refs.dashboardWeak = $("#dashboardWeak");
+    refs.dashboardNew = $("#dashboardNew");
+    refs.dashboardMarked = $("#dashboardMarked");
+    refs.dashboardMarkedBar = $("#dashboardMarkedBar");
+    refs.dashboardKnownRate = $("#dashboardKnownRate");
+    refs.dashboardKnownBar = $("#dashboardKnownBar");
+    refs.dashboardPlan = $("#dashboardPlan");
+    refs.dashboardQueueList = $("#dashboardQueueList");
+    refs.dashboardWeakList = $("#dashboardWeakList");
+    refs.dashboardStartReview = $("#dashboardStartReview");
+    refs.dashboardStartPractice = $("#dashboardStartPractice");
+    refs.dashboardManagePlans = $("#dashboardManagePlans");
+    refs.dashboardRefresh = $("#dashboardRefresh");
     refs.practicePrev = $("#practicePrev");
     refs.practiceNext = $("#practiceNext");
     refs.practicePosition = $("#practicePosition");
@@ -124,6 +167,29 @@
     refs.revealMeaning = $("#revealMeaning");
     refs.reciteCheck = $("#reciteCheck");
     refs.reciteFeedback = $("#reciteFeedback");
+    refs.reviewPosition = $("#reviewPosition");
+    refs.reviewDueCount = $("#reviewDueCount");
+    refs.reviewWeakCount = $("#reviewWeakCount");
+    refs.reviewNewCount = $("#reviewNewCount");
+    refs.reviewLaterCount = $("#reviewLaterCount");
+    refs.reviewMode = $("#reviewMode");
+    refs.reviewMinutes = $("#reviewMinutes");
+    refs.reviewSessionText = $("#reviewSessionText");
+    refs.reviewRefresh = $("#reviewRefresh");
+    refs.reviewEmpty = $("#reviewEmpty");
+    refs.reviewBody = $("#reviewBody");
+    refs.reviewBucket = $("#reviewBucket");
+    refs.reviewMeta = $("#reviewMeta");
+    refs.reviewPhrase = $("#reviewPhrase");
+    refs.reviewMeaning = $("#reviewMeaning");
+    refs.reviewMeaningIndex = $("#reviewMeaningIndex");
+    refs.reviewMeaningText = $("#reviewMeaningText");
+    refs.reviewExample = $("#reviewExample");
+    refs.reviewPrev = $("#reviewPrev");
+    refs.reviewReveal = $("#reviewReveal");
+    refs.reviewKnown = $("#reviewKnown");
+    refs.reviewUnknown = $("#reviewUnknown");
+    refs.reviewNext = $("#reviewNext");
     refs.notesPanel = $("#notesPanel");
     refs.notesTitle = $("#notesTitle");
     refs.addNote = $("#addNote");
@@ -148,6 +214,12 @@
     refs.modalCancel = $("#modalCancel");
     refs.modalClose = $("#modalClose");
     refs.modalSave = $("#modalSave");
+    refs.loginOverlay = $("#loginOverlay");
+    refs.loginForm = $("#loginForm");
+    refs.loginUsername = $("#loginUsername");
+    refs.loginPassword = $("#loginPassword");
+    refs.loginButton = $("#loginButton");
+    refs.loginError = $("#loginError");
     refs.toast = $("#toast");
   }
 
@@ -155,6 +227,8 @@
     $all("[data-view-tab]").forEach((button) => {
       button.addEventListener("click", () => setView(button.dataset.viewTab));
     });
+    refs.loginForm.addEventListener("submit", handleLogin);
+    refs.logoutButton.addEventListener("click", logout);
 
     refs.alphaBar.addEventListener("click", (event) => {
       const button = event.target.closest("[data-alpha]");
@@ -180,8 +254,25 @@
     refs.practiceNext.addEventListener("click", () => navigate(1));
     refs.recitePrev.addEventListener("click", () => navigate(-1));
     refs.reciteNext.addEventListener("click", () => navigate(1));
+    refs.dashboardStartReview.addEventListener("click", () => setView("review"));
+    refs.dashboardStartPractice.addEventListener("click", () => setView("practice"));
+    refs.dashboardManagePlans.addEventListener("click", () => setView("select"));
+    refs.dashboardRefresh.addEventListener("click", () => refreshReview(refs.dashboardRefresh));
+    refs.dashboardQueueList.addEventListener("click", handleDashboardItemClick);
+    refs.dashboardWeakList.addEventListener("click", handleDashboardItemClick);
     refs.practiceCheck.addEventListener("click", checkPractice);
     refs.reciteCheck.addEventListener("click", checkRecite);
+    refs.reviewPrev.addEventListener("click", () => moveReview(-1));
+    refs.reviewNext.addEventListener("click", () => moveReview(1));
+    refs.reviewReveal.addEventListener("click", () => {
+      state.reviewRevealed = !state.reviewRevealed;
+      renderReview();
+    });
+    refs.reviewKnown.addEventListener("click", () => markReview("known", refs.reviewKnown));
+    refs.reviewUnknown.addEventListener("click", () => markReview("unknown", refs.reviewUnknown));
+    refs.reviewRefresh.addEventListener("click", () => refreshReview(refs.reviewRefresh));
+    refs.reviewMode.addEventListener("change", () => changeReviewSettings());
+    refs.reviewMinutes.addEventListener("change", () => changeReviewSettings());
     refs.revealMeaning.addEventListener("click", () => {
       state.revealed = !state.revealed;
       renderRecite();
@@ -229,6 +320,16 @@
       });
     });
 
+    $all("[data-review-filter]").forEach((button) => {
+      button.addEventListener("click", () => {
+        state.reviewFilter = button.dataset.reviewFilter;
+        state.currentReviewKey = null;
+        state.reviewRevealed = false;
+        ensureReviewItem();
+        renderReview();
+      });
+    });
+
     refs.selectGrid.addEventListener("click", (event) => {
       const button = event.target.closest("[data-select-word]");
       if (!button) return;
@@ -240,28 +341,78 @@
     });
   }
 
+  async function bootAuthenticated() {
+    hideLogin();
+    await loadData();
+    const initialView = normalizeView(location.hash.slice(1) || refs.defaultView.value);
+    setView(initialView, { updateHash: !location.hash });
+    renderAll();
+  }
+
+  async function handleLogin(event) {
+    event.preventDefault();
+    const username = refs.loginUsername.value.trim();
+    const password = refs.loginPassword.value;
+    setLoginError("");
+    refs.loginButton.disabled = true;
+    refs.loginButton.textContent = "Signing in...";
+    try {
+      const data = await api.login(username, password);
+      localStorage.setItem(AUTH_TOKEN_KEY, data.access_token);
+      await bootAuthenticated();
+      showToast(`Signed in as ${data.user.username}.`);
+    } catch (err) {
+      showLogin(err.message || "Sign in failed.");
+    } finally {
+      refs.loginButton.disabled = false;
+      refs.loginButton.textContent = "Sign in";
+    }
+  }
+
+  function logout() {
+    clearAuthToken();
+    state.phrases = [];
+    state.notesCache = {};
+    state.marksCache = {};
+    state.reviewItems = [];
+    state.reviewSummary = {};
+    state.plans = [];
+    state.activePlan = null;
+    state.currentPhrase = null;
+    state.currentReviewKey = null;
+    state.selectedSet.clear();
+    setStatus("Locked");
+    renderAll();
+    showLogin("Signed out.");
+  }
+
   async function loadData() {
     setStatus("Loading");
-    const [phrases, notes, plans, marks] = await Promise.all([
+    const [phrases, notes, plans, marks, review] = await Promise.all([
       api.listPhrases(),
       api.listNotes(),
       api.listPlans(),
       api.listMarks(),
+      api.listReview(),
     ]);
     state.phrases = Array.isArray(phrases) ? phrases : [];
     state.notesCache = notes && typeof notes === "object" ? notes : {};
     state.plans = Array.isArray(plans) ? plans : [];
     state.marksCache = marks && typeof marks === "object" ? marks : {};
+    applyReviewData(review);
     restoreActivePlan();
     ensureCurrentPhrase();
+    ensureReviewItem();
   }
 
   function renderAll() {
     renderStatus();
     renderAlphaBar();
     renderSidebar();
+    renderDashboard();
     renderPractice();
     renderRecite();
+    renderReview();
     renderNotes();
     renderSelect();
   }
@@ -270,7 +421,8 @@
     const visible = navList().length;
     const total = state.phrases.length;
     const plan = state.activePlan ? ` | ${state.activePlan.name}` : "";
-    setStatus(`${visible} / ${total} words${plan}`);
+    const due = state.reviewSummary && state.reviewSummary.due ? ` | ${state.reviewSummary.due} due` : "";
+    setStatus(`${visible} / ${total} words${plan}${due}`);
   }
 
   function renderAlphaBar() {
@@ -296,9 +448,11 @@
     const letters = Object.keys(groups).sort();
 
     if (state.activePlan) {
+      refs.sidebarHead.hidden = false;
       refs.activePlanBadge.hidden = false;
       refs.activePlanBadge.textContent = state.activePlan.name;
     } else {
+      refs.sidebarHead.hidden = true;
       refs.activePlanBadge.hidden = true;
       refs.activePlanBadge.textContent = "";
     }
@@ -348,6 +502,59 @@
     });
   }
 
+  function renderDashboard() {
+    const summary = state.reviewSummary || {};
+    const totalItems = Number(summary.total || state.reviewItems.length || 0);
+    const markedCount = Object.keys(state.marksCache || {}).length;
+    const knownCount = Object.values(state.marksCache || {}).filter((mark) => mark && mark.latest === "known").length;
+    const markedPct = percent(markedCount, totalItems);
+    const knownPct = percent(knownCount, Math.max(markedCount, 1));
+    const dueCount = Number(summary.due || 0);
+    const weakCount = Number(summary.weak || 0);
+    const newCount = Number(summary.new || 0);
+
+    refs.dashboardTotalWords.textContent = String(state.phrases.length);
+    refs.dashboardDue.textContent = String(dueCount);
+    refs.dashboardWeak.textContent = String(weakCount);
+    refs.dashboardNew.textContent = String(newCount);
+    refs.dashboardMarked.textContent = `${markedPct}%`;
+    refs.dashboardKnownRate.textContent = `${knownPct}%`;
+    refs.dashboardMarkedBar.style.width = `${markedPct}%`;
+    refs.dashboardKnownBar.style.width = `${knownPct}%`;
+    refs.dashboardPlan.textContent = state.activePlan
+      ? `${state.activePlan.name} active | ${(state.activePlan.words || []).length} words`
+      : "All words active";
+    refs.dashboardSession.textContent = reviewSessionText(summary, dashboardQueueItems().length);
+    refs.dashboardSubline.textContent = dashboardSubline(dueCount, weakCount, newCount);
+
+    renderDashboardList(refs.dashboardQueueList, dashboardQueueItems(), "No review items queued.");
+    renderDashboardList(refs.dashboardWeakList, dashboardWeakItems(), "No weak items right now.");
+  }
+
+  function renderDashboardList(container, items, emptyText) {
+    clear(container);
+    if (!items.length) {
+      container.appendChild(el("div", { class: "dashboard-empty", text: emptyText }));
+      return;
+    }
+
+    items.forEach((item) => {
+      container.appendChild(
+        el("button", {
+          type: "button",
+          class: "dashboard-list-item",
+          dataset: { dashboardReviewKey: item.key },
+        }, [
+          el("span", { class: `review-bucket ${item.bucket}`, text: bucketLabel(item) }),
+          el("span", { class: "dashboard-item-main" }, [
+            el("strong", { text: item.phrase }),
+            el("small", { text: reviewMetaText(item) }),
+          ]),
+        ]),
+      );
+    });
+  }
+
   function renderPractice() {
     const phrase = state.currentPhrase;
     updateNav(refs.practicePosition, refs.practicePrev, refs.practiceNext);
@@ -377,6 +584,61 @@
       : "Type the Chinese meaning from memory";
     renderReciteMeanings();
     renderFeedback(refs.reciteFeedback, state.reciteFeedback);
+  }
+
+  function renderReview() {
+    renderReviewStats();
+    renderReviewFilterButtons();
+    ensureReviewItem();
+
+    const items = filteredReviewItems();
+    const item = currentReviewItem();
+    const index = item ? items.findIndex((entry) => entry.key === item.key) : -1;
+
+    refs.reviewPosition.textContent = item ? `${index + 1} / ${items.length}` : `0 / ${items.length}`;
+    refs.reviewEmpty.hidden = !!item;
+    refs.reviewBody.hidden = !item;
+    refs.reviewPrev.disabled = index <= 0;
+    refs.reviewNext.disabled = index < 0 || index >= items.length - 1;
+    refs.reviewKnown.disabled = !item;
+    refs.reviewUnknown.disabled = !item;
+
+    if (!item) {
+      refs.reviewEmpty.textContent = reviewEmptyText();
+      return;
+    }
+
+    const phrase = findPhrase(item.phrase);
+    if (phrase && (!state.currentPhrase || state.currentPhrase.phrase !== phrase.phrase)) {
+      state.currentPhrase = phrase;
+    }
+
+    refs.reviewBucket.textContent = bucketLabel(item);
+    refs.reviewBucket.className = `review-bucket ${item.bucket}`;
+    refs.reviewMeta.textContent = reviewMetaText(item);
+    refs.reviewPhrase.textContent = item.phrase;
+    refs.reviewMeaning.hidden = !state.reviewRevealed;
+    refs.reviewMeaningIndex.textContent = `#${Number(item.meaning_index) + 1}`;
+    refs.reviewMeaningText.textContent = item.meaning;
+    refs.reviewExample.textContent = item.example || "";
+    refs.reviewReveal.textContent = state.reviewRevealed ? "Hide Meaning" : "Show Meaning";
+  }
+
+  function renderReviewStats() {
+    const summary = state.reviewSummary || {};
+    refs.reviewDueCount.textContent = String(summary.due || 0);
+    refs.reviewWeakCount.textContent = String(summary.weak || 0);
+    refs.reviewNewCount.textContent = String(summary.new || 0);
+    refs.reviewLaterCount.textContent = String(summary.later || 0);
+    refs.reviewMode.value = state.reviewMode;
+    refs.reviewMinutes.value = String(state.reviewMinutes);
+    refs.reviewSessionText.textContent = reviewSessionText(summary, filteredReviewItems().length);
+  }
+
+  function renderReviewFilterButtons() {
+    $all("[data-review-filter]").forEach((button) => {
+      button.classList.toggle("active", button.dataset.reviewFilter === state.reviewFilter);
+    });
   }
 
   function renderMeaningList(container, meanings) {
@@ -488,7 +750,7 @@
   }
 
   function renderSelect() {
-    refs.defaultView.value = localStorage.getItem("defaultView") || "practice";
+    refs.defaultView.value = localStorage.getItem("defaultView") || "dashboard";
     renderPlanSelect();
     renderSelectFilterButtons();
     renderSelectedCount();
@@ -581,8 +843,10 @@
       button.classList.toggle("active", button.dataset.viewTab === next);
     });
     refs.mainShell.classList.toggle("select-mode", next === "select");
+    refs.mainShell.classList.toggle("full-mode", next === "select" || next === "dashboard");
 
-    if (next !== "select") ensureCurrentPhrase();
+    if (next === "review") ensureReviewItem();
+    else if (next !== "select" && next !== "dashboard") ensureCurrentPhrase();
     if (options.updateHash !== false && location.hash.slice(1) !== next) {
       history.replaceState(null, "", `#${next}`);
     }
@@ -655,9 +919,48 @@
     await withBusy(button, "...", async () => {
       const result = await api.saveMark(markKey(meaning), status);
       state.marksCache[markKey(meaning)] = result;
+      await refreshReviewData();
+      renderDashboard();
       renderRecite();
+      renderReview();
       renderSidebar();
     });
+  }
+
+  async function markReview(status, button) {
+    const item = currentReviewItem();
+    if (!item) return;
+    const oldIndex = filteredReviewItems().findIndex((entry) => entry.key === item.key);
+
+    await withBusy(button, "...", async () => {
+      const oldKey = item.key;
+      const result = await api.saveMark(oldKey, status);
+      state.marksCache[oldKey] = result;
+      await refreshReviewData();
+      keepReviewMoving(oldKey, oldIndex);
+      renderAll();
+    });
+  }
+
+  async function refreshReview(button) {
+    await withBusy(button, "Refreshing...", async () => {
+      await refreshReviewData();
+      ensureReviewItem();
+      renderAll();
+      showToast("Review queue refreshed.");
+    });
+  }
+
+  async function changeReviewSettings() {
+    state.reviewMode = refs.reviewMode.value === "aggressive" ? "aggressive" : "balanced";
+    state.reviewMinutes = Number(refs.reviewMinutes.value || 0);
+    localStorage.setItem("reviewMode", state.reviewMode);
+    localStorage.setItem("reviewMinutes", String(state.reviewMinutes));
+    state.currentReviewKey = null;
+    state.reviewRevealed = false;
+    await refreshReviewData();
+    ensureReviewItem();
+    renderAll();
   }
 
   function handleNoteClick(event) {
@@ -669,6 +972,15 @@
     if (button.dataset.noteAction === "view") openNoteModal("view", note);
     if (button.dataset.noteAction === "edit") openNoteModal("edit", note);
     if (button.dataset.noteAction === "delete") deleteNote(note);
+  }
+
+  function handleDashboardItemClick(event) {
+    const button = event.target.closest("[data-dashboard-review-key]");
+    if (!button) return;
+    state.reviewFilter = "all";
+    state.currentReviewKey = button.dataset.dashboardReviewKey;
+    state.reviewRevealed = false;
+    setView("review");
   }
 
   function openNoteModal(mode, note = null) {
@@ -833,8 +1145,12 @@
     await api.resetSystem();
     state.notesCache = {};
     state.marksCache = {};
+    state.reviewItems = [];
+    state.reviewSummary = {};
+    state.currentReviewKey = null;
     state.plans = [];
     setActivePlan(null);
+    await refreshReviewData();
     renderAll();
     showToast("Data reset.");
   }
@@ -845,6 +1161,15 @@
       const updated = state.plans.find((plan) => plan.name === state.activePlan.name);
       state.activePlan = updated || null;
     }
+  }
+
+  async function refreshReviewData() {
+    applyReviewData(await api.listReview());
+  }
+
+  function applyReviewData(data) {
+    state.reviewItems = Array.isArray(data && data.items) ? data.items : [];
+    state.reviewSummary = data && typeof data.summary === "object" ? data.summary : {};
   }
 
   function setActivePlan(plan) {
@@ -871,6 +1196,53 @@
       return;
     }
     state.currentPhrase = list.find((item) => item.phrase === state.currentPhrase.phrase) || list[0];
+  }
+
+  function ensureReviewItem() {
+    const items = filteredReviewItems();
+    if (!items.length) {
+      state.currentReviewKey = null;
+      return;
+    }
+
+    const current = items.find((item) => item.key === state.currentReviewKey);
+    const item = current || items[0];
+    state.currentReviewKey = item.key;
+    const phrase = findPhrase(item.phrase);
+    if (phrase) state.currentPhrase = phrase;
+  }
+
+  function currentReviewItem() {
+    return filteredReviewItems().find((item) => item.key === state.currentReviewKey) || null;
+  }
+
+  function filteredReviewItems() {
+    return state.reviewItems.filter((item) => {
+      if (state.reviewFilter === "due") return item.bucket === "due" || item.bucket === "again" || item.bucket === "soon";
+      if (state.reviewFilter === "weak") return item.bucket === "again" || Number(item.forget_count || 0) > 0;
+      if (state.reviewFilter === "new") return item.bucket === "new";
+      return true;
+    });
+  }
+
+  function moveReview(direction) {
+    const items = filteredReviewItems();
+    const index = items.findIndex((item) => item.key === state.currentReviewKey);
+    const nextIndex = index + direction;
+    if (nextIndex < 0 || nextIndex >= items.length) return;
+    state.currentReviewKey = items[nextIndex].key;
+    state.reviewRevealed = false;
+    ensureReviewItem();
+    renderAll();
+  }
+
+  function keepReviewMoving(oldKey, oldIndex) {
+    const items = filteredReviewItems();
+    const same = items.find((item) => item.key === oldKey);
+    const fallback = items[Math.min(Math.max(oldIndex, 0), Math.max(items.length - 1, 0))];
+    state.currentReviewKey = same ? same.key : (fallback && fallback.key) || null;
+    state.reviewRevealed = false;
+    ensureReviewItem();
   }
 
   function navList() {
@@ -973,15 +1345,119 @@
     return Number(meaning.total_meanings || 1) > 1 ? `${phrase.phrase}::${meaning.meaning_index}` : phrase.phrase;
   }
 
+  function bucketLabel(item) {
+    if (item.bucket === "again") return "Retry";
+    if (item.bucket === "due") return item.overdue_days > 0 ? `Overdue ${item.overdue_days}d` : "Due";
+    if (item.bucket === "soon") return "Soon";
+    if (item.bucket === "new") return "New";
+    return "Later";
+  }
+
+  function reviewMetaText(item) {
+    const parts = [];
+    if (item.review_count) parts.push(`${item.review_count} reviews`);
+    if (item.known_streak) parts.push(`${item.known_streak} streak`);
+    if (item.forget_count) parts.push(`${item.forget_count} forgotten`);
+    if (item.bucket === "later" && item.due_at) parts.push(`next ${formatDate(item.due_at)}`);
+    if (!parts.length) parts.push("first review");
+    return parts.join(" | ");
+  }
+
+  function reviewEmptyText() {
+    if (state.reviewFilter === "due") return "Nothing due right now. Nice.";
+    if (state.reviewFilter === "weak") return "No weak items found.";
+    if (state.reviewFilter === "new") return "No new items left.";
+    return "No review items yet.";
+  }
+
+  function dashboardQueueItems() {
+    const dueItems = state.reviewItems.filter((item) => ["again", "due", "soon"].includes(item.bucket));
+    const queue = dueItems.length ? dueItems : state.reviewItems.filter((item) => item.bucket === "new");
+    return (queue.length ? queue : state.reviewItems).slice(0, 5);
+  }
+
+  function dashboardWeakItems() {
+    return state.reviewItems
+      .filter((item) => item.bucket === "again" || Number(item.forget_count || 0) > 0)
+      .slice(0, 5);
+  }
+
+  function dashboardSubline(dueCount, weakCount, newCount) {
+    if (dueCount > 0) return `${dueCount} items are ready for review. ${weakCount} weak spots need extra attention.`;
+    if (newCount > 0) return "No due reviews right now. This is a good window to learn new items.";
+    return "Everything is quiet. You can practice current words or manage plans.";
+  }
+
+  function reviewSessionText(summary, activeCount) {
+    const shown = Number(activeCount || summary.shown || 0);
+    if (!state.reviewMinutes) return `${shown} cards | open session`;
+    return `${shown} cards | ${state.reviewMinutes} min ${state.reviewMode}`;
+  }
+
+  function reviewQuery() {
+    const params = new URLSearchParams({
+      limit: "1000",
+      include_new: "true",
+      include_later: "true",
+      mode: state.reviewMode,
+      minutes: String(state.reviewMinutes),
+    });
+    return params.toString();
+  }
+
+  function percent(value, total) {
+    if (!total) return 0;
+    return Math.max(0, Math.min(100, Math.round((value / total) * 100)));
+  }
+
   async function fetchJson(url, options = {}) {
-    const response = await fetch(url, options);
+    const { auth = true, ...fetchOptions } = options;
+    const headers = new Headers(fetchOptions.headers || {});
+    const token = authToken();
+    if (auth && token) headers.set("Authorization", `Bearer ${token}`);
+    fetchOptions.headers = headers;
+
+    const response = await fetch(url, fetchOptions);
     const contentType = response.headers.get("content-type") || "";
     const data = contentType.includes("application/json") ? await response.json() : await response.text();
     if (!response.ok) {
       const detail = typeof data === "object" ? data.detail || data.message : data;
+      if (response.status === 401 && auth) {
+        clearAuthToken();
+        showLogin("Session expired. Sign in again.");
+      }
       throw new Error(detail || `API ${response.status}`);
     }
     return data;
+  }
+
+  function authToken() {
+    return localStorage.getItem(AUTH_TOKEN_KEY);
+  }
+
+  function clearAuthToken() {
+    localStorage.removeItem(AUTH_TOKEN_KEY);
+  }
+
+  function showLogin(message = "") {
+    refs.loginOverlay.hidden = false;
+    document.body.classList.add("auth-open");
+    refs.logoutButton.hidden = true;
+    refs.loginUsername.value = refs.loginUsername.value || "admin";
+    setLoginError(message);
+    setTimeout(() => refs.loginPassword.focus(), 0);
+  }
+
+  function hideLogin() {
+    refs.loginOverlay.hidden = true;
+    document.body.classList.remove("auth-open");
+    refs.logoutButton.hidden = false;
+    setLoginError("");
+  }
+
+  function setLoginError(message) {
+    refs.loginError.textContent = message;
+    refs.loginError.hidden = !message;
   }
 
   async function withBusy(button, label, task) {
@@ -1013,7 +1489,7 @@
 
   function normalizeView(view) {
     if (view === "settings") return "select";
-    return VALID_VIEWS.has(view) ? view : "practice";
+    return VALID_VIEWS.has(view) ? view : "dashboard";
   }
 
   function sanitizePlanName(name) {
