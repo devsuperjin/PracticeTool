@@ -3,7 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from fastapi import FastAPI, Request
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 
 from .api.v1 import router as api_v1_router
@@ -11,9 +11,11 @@ from .store import init_db
 
 init_db()
 
-_DIST_DIR = Path(__file__).resolve().parent / "ui" / "dist"
+_APP_DIR = Path(__file__).resolve().parent
+_DIST_DIR = _APP_DIR / "ui" / "dist"
 _INDEX_PATH = _DIST_DIR / "index.html"
 _INDEX_HTML = _INDEX_PATH.read_text(encoding="utf-8") if _INDEX_PATH.exists() else ""
+_UI_V2_DIR = _APP_DIR / "ui_v2"
 
 app = FastAPI(title="English Practice")
 
@@ -21,6 +23,14 @@ if _DIST_DIR.exists():
     app.mount("/assets", StaticFiles(directory=str(_DIST_DIR / "assets")), name="assets")
 
 app.include_router(api_v1_router, prefix="/api/v1")
+
+if _UI_V2_DIR.exists():
+
+    @app.get("/v2", include_in_schema=False)
+    async def ui_v2_redirect() -> RedirectResponse:
+        return RedirectResponse(url="/v2/")
+
+    app.mount("/v2", StaticFiles(directory=str(_UI_V2_DIR), html=True), name="ui_v2")
 
 
 @app.get("/health")

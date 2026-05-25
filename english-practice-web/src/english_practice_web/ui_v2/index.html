@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>English Practice v2</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Word list">
+        <div class="sidebar-head">
+          <div>
+            <p class="eyebrow">PracticeTool</p>
+            <h1>Word List</h1>
+          </div>
+          <span id="activePlanBadge" class="plan-badge" hidden></span>
+        </div>
+
+        <div id="alphaBar" class="alpha-bar" aria-label="Alphabet shortcuts"></div>
+        <div id="wordList" class="word-list" tabindex="0"></div>
+      </aside>
+
+      <div class="app-frame">
+        <header class="topbar">
+          <nav class="tabs" aria-label="Main views">
+            <button class="tab-btn" type="button" data-view-tab="practice">Practice</button>
+            <button class="tab-btn" type="button" data-view-tab="recite">Recite</button>
+            <button class="tab-btn" type="button" data-view-tab="select">Select</button>
+          </nav>
+          <div class="topbar-status">
+            <span id="statusText">Loading</span>
+          </div>
+        </header>
+
+        <main id="mainShell" class="main-shell">
+          <section id="page-practice" class="page work-page" aria-labelledby="practiceTitle">
+            <article class="surface">
+              <div class="page-control">
+                <button id="practicePrev" class="icon-btn" type="button" aria-label="Previous word">&lt;</button>
+                <span id="practicePosition" class="position-pill">0 / 0</span>
+                <button id="practiceNext" class="icon-btn" type="button" aria-label="Next word">&gt;</button>
+              </div>
+
+              <div id="practiceEmpty" class="empty-state">Loading words...</div>
+              <div id="practiceBody" hidden>
+                <h2 id="practiceTitle" class="phrase-title"></h2>
+                <div id="practiceMeanings" class="meaning-list"></div>
+                <p class="meta-row"><span>Example</span><b id="practiceExample"></b></p>
+
+                <label class="field-label" for="practiceSentence">Your sentence</label>
+                <textarea id="practiceSentence" class="text-area" rows="6" placeholder="Write your own sentence using this phrasal verb."></textarea>
+                <div class="action-row">
+                  <button id="practiceCheck" class="btn btn-primary" type="button">AI Check</button>
+                </div>
+                <div id="practiceFeedback" class="feedback" hidden></div>
+              </div>
+            </article>
+          </section>
+
+          <section id="page-recite" class="page work-page" aria-labelledby="reciteTitle">
+            <article class="surface">
+              <div class="page-control">
+                <button id="recitePrev" class="icon-btn" type="button" aria-label="Previous word">&lt;</button>
+                <span id="recitePosition" class="position-pill">0 / 0</span>
+                <button id="reciteNext" class="icon-btn" type="button" aria-label="Next word">&gt;</button>
+              </div>
+
+              <div id="reciteEmpty" class="empty-state">Loading words...</div>
+              <div id="reciteBody" hidden>
+                <h2 id="reciteTitle" class="phrase-title"></h2>
+                <p class="meta-row"><span>Example</span><b id="reciteExample"></b></p>
+                <div id="reciteMeanings" class="recite-meanings"></div>
+
+                <div class="recite-box">
+                  <p id="reciteHint" class="recite-hint">Type the Chinese meaning from memory</p>
+                  <label class="field-label" for="reciteInput">Chinese translation</label>
+                  <textarea id="reciteInput" class="text-area" rows="5" placeholder="Enter Chinese translation."></textarea>
+                  <div class="action-row">
+                    <button id="revealMeaning" class="btn" type="button">Show Meaning</button>
+                    <button id="reciteCheck" class="btn btn-primary" type="button">AI Check</button>
+                  </div>
+                  <div id="reciteFeedback" class="feedback" hidden></div>
+                </div>
+              </div>
+            </article>
+          </section>
+
+          <section id="page-select" class="page select-page" aria-labelledby="selectTitle">
+            <div class="select-head">
+              <div>
+                <p class="eyebrow">Plans</p>
+                <h2 id="selectTitle">Select Practice Words</h2>
+              </div>
+              <div class="select-summary">
+                <span id="selectedCount">0 selected</span>
+              </div>
+            </div>
+
+            <div class="toolbar">
+              <label class="control">
+                <span>Default</span>
+                <select id="defaultView" class="input">
+                  <option value="practice">Practice</option>
+                  <option value="recite">Recite</option>
+                </select>
+              </label>
+              <label class="control wide">
+                <span>Plan</span>
+                <select id="planSelect" class="input"></select>
+              </label>
+              <label class="control">
+                <span>Name</span>
+                <input id="planName" class="input" type="text" placeholder="Plan name">
+              </label>
+              <label class="control short">
+                <span>Days</span>
+                <input id="planDays" class="input" type="number" min="1" max="365" value="30">
+              </label>
+              <button id="autoCreatePlan" class="btn btn-primary" type="button">Auto Create</button>
+              <div class="segmented" role="group" aria-label="Selection filter">
+                <button class="segment active" type="button" data-select-filter="all">All</button>
+                <button class="segment" type="button" data-select-filter="selected">Selected</button>
+                <button class="segment" type="button" data-select-filter="unselected">Unselected</button>
+              </div>
+              <button id="randomSelect" class="btn btn-warning" type="button">Random 20</button>
+              <button id="savePlan" class="btn btn-success" type="button">Save</button>
+              <button id="deletePlan" class="btn btn-danger" type="button">Delete</button>
+              <button id="deleteAllPlans" class="btn btn-danger" type="button">Delete All</button>
+              <button id="resetSystem" class="btn btn-ghost-danger" type="button">Reset Data</button>
+            </div>
+
+            <div id="selectGrid" class="select-grid"></div>
+          </section>
+
+          <aside id="notesPanel" class="notes-panel" aria-label="Notes">
+            <div class="notes-head">
+              <div>
+                <p class="eyebrow">Notes</p>
+                <strong id="notesTitle">No word</strong>
+              </div>
+              <button id="addNote" class="icon-btn" type="button" aria-label="Add note">+</button>
+            </div>
+            <div id="notesList" class="notes-list"></div>
+          </aside>
+        </main>
+      </div>
+    </div>
+
+    <div id="modalOverlay" class="modal-overlay" hidden>
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-head">
+          <h2 id="modalTitle">Note</h2>
+          <button id="modalClose" class="icon-btn" type="button" aria-label="Close">x</button>
+        </div>
+        <textarea id="modalText" class="text-area" rows="8"></textarea>
+        <p id="modalMeta" class="modal-meta"></p>
+        <div class="modal-actions">
+          <button id="modalDelete" class="btn btn-danger" type="button" hidden>Delete</button>
+          <button id="modalCancel" class="btn" type="button">Cancel</button>
+          <button id="modalSave" class="btn btn-primary" type="button">Save</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  </body>
+</html>
