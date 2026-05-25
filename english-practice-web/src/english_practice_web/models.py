@@ -15,11 +15,11 @@ class ReciteCheckRequest(BaseModel):
 
 class NoteRequest(BaseModel):
     phrase: str = Field(min_length=1)
-    note: str
+    note: str = Field(min_length=1)
 
 
 class NoteUpdateRequest(BaseModel):
-    note: str
+    note: str = Field(min_length=1)
 
 
 class ReadingRequest(BaseModel):

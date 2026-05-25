@@ -45,14 +45,32 @@ for entry in phrasal_data:
 for entries in _phrase_index.values():
     entries.sort(key=lambda e: e["meaning_index"])
 
+_phrase_lookup: dict[str, str] = {phrase.casefold(): phrase for phrase in _phrase_index}
+
+
+def find_canonical_phrase(phrase: str) -> str | None:
+    """Return the phrase exactly as stored in the word list."""
+    normalized = phrase.strip()
+    if normalized in _phrase_index:
+        return normalized
+    return _phrase_lookup.get(normalized.casefold())
+
+
+def require_canonical_phrase(phrase: str) -> str:
+    canonical = find_canonical_phrase(phrase)
+    if not canonical:
+        raise HTTPException(status_code=400, detail="Unknown phrasal verb: " + phrase.strip())
+    return canonical
+
 
 def get_phrase_meanings(phrase: str) -> list[dict]:
     """Return all meanings for a phrase, each with meaning_index."""
     if not phrasal_data:
         raise HTTPException(status_code=500, detail="Phrasal data unavailable")
-    meanings = _phrase_index.get(phrase)
+    canonical = require_canonical_phrase(phrase)
+    meanings = _phrase_index.get(canonical)
     if not meanings:
-        raise HTTPException(status_code=400, detail="Unknown phrasal verb: " + phrase)
+        raise HTTPException(status_code=400, detail="Unknown phrasal verb: " + phrase.strip())
     return meanings
 
 

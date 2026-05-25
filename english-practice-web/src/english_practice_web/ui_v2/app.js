@@ -59,6 +59,7 @@
     getSettings: () => fetchJson(`${API_BASE}/settings`),
     listPhrases: () => fetchJson(`${API_BASE}/list`),
     listNotes: () => fetchJson(`${API_BASE}/notes`),
+    getNotes: (phrase) => fetchJson(`${API_BASE}/notes/${encodeURIComponent(phrase)}`),
     listPlans: () => fetchJson(`${API_BASE}/plans`),
     listMarks: () => fetchJson(`${API_BASE}/marks`),
     listReview: () => fetchJson(`${API_BASE}/review?${reviewQuery()}`),
@@ -416,7 +417,7 @@
         state.reviewFilter = button.dataset.reviewFilter;
         state.currentReviewKey = null;
         state.reviewRevealed = false;
-        ensureReviewItem();
+        ensureReviewItem({ syncPhrase: state.view === "review" });
         renderReview();
       });
     });
@@ -497,7 +498,7 @@
     applyReviewData(review);
     restoreActivePlan();
     ensureCurrentPhrase();
-    ensureReviewItem();
+    ensureReviewItem({ syncPhrase: false });
   }
 
   function renderAll() {
@@ -686,7 +687,7 @@
   function renderReview() {
     renderReviewStats();
     renderReviewFilterButtons();
-    ensureReviewItem();
+    ensureReviewItem({ syncPhrase: state.view === "review" });
 
     const items = filteredReviewItems();
     const item = currentReviewItem();
@@ -703,11 +704,6 @@
     if (!item) {
       refs.reviewEmpty.textContent = reviewEmptyText();
       return;
-    }
-
-    const phrase = findPhrase(item.phrase);
-    if (phrase && (!state.currentPhrase || state.currentPhrase.phrase !== phrase.phrase)) {
-      state.currentPhrase = phrase;
     }
 
     refs.reviewBucket.textContent = bucketLabel(item);
@@ -1072,7 +1068,7 @@
     refs.mainShell.classList.toggle("select-mode", next === "select");
     refs.mainShell.classList.toggle("full-mode", next === "select" || next === "dashboard" || next === "reading" || next === "settings");
 
-    if (next === "review") ensureReviewItem();
+    if (next === "review") ensureReviewItem({ syncPhrase: true });
     else if (next !== "select" && next !== "dashboard" && next !== "reading" && next !== "settings") ensureCurrentPhrase();
     if (options.updateHash !== false && location.hash.slice(1) !== next) {
       history.replaceState(null, "", `#${next}`);
@@ -1083,6 +1079,7 @@
   function selectPhraseByName(name) {
     const phrase = findPhrase(name);
     if (!phrase) return;
+    const previousPhrase = state.currentPhrase && state.currentPhrase.phrase;
     state.currentPhrase = phrase;
     state.revealed = false;
     state.practiceFeedback = "";
@@ -1090,6 +1087,7 @@
     refs.practiceSentence.value = "";
     refs.reciteInput.value = "";
     renderAll();
+    if (previousPhrase !== phrase.phrase) refreshNotesForPhrase(phrase.phrase);
   }
 
   function navigate(direction) {
@@ -1202,7 +1200,7 @@
   async function refreshReview(button) {
     await withBusy(button, "Refreshing...", async () => {
       await refreshReviewData();
-      ensureReviewItem();
+      ensureReviewItem({ syncPhrase: state.view === "review" });
       renderAll();
       showToast("Review queue refreshed.");
     });
@@ -1218,7 +1216,7 @@
     state.currentReviewKey = null;
     state.reviewRevealed = false;
     await refreshReviewData();
-    ensureReviewItem();
+    ensureReviewItem({ syncPhrase: state.view === "review" });
     renderAll();
   }
 
@@ -1442,6 +1440,18 @@
     applyReviewData(await api.listReview());
   }
 
+  async function refreshNotesForPhrase(phraseName) {
+    try {
+      const notes = await api.getNotes(phraseName);
+      state.notesCache[phraseName] = Array.isArray(notes) ? notes : [];
+      if (state.currentPhrase && state.currentPhrase.phrase === phraseName) renderNotes();
+      renderSidebar();
+      renderSelectGrid();
+    } catch (err) {
+      showToast(`Failed to load notes: ${err.message}`);
+    }
+  }
+
   function applyReviewData(data) {
     state.reviewItems = Array.isArray(data && data.items) ? data.items : [];
     state.reviewSummary = data && typeof data.summary === "object" ? data.summary : {};
@@ -1482,7 +1492,8 @@
     state.currentPhrase = list.find((item) => item.phrase === state.currentPhrase.phrase) || list[0];
   }
 
-  function ensureReviewItem() {
+  function ensureReviewItem(options = {}) {
+    const syncPhrase = !!options.syncPhrase;
     const items = filteredReviewItems();
     if (!items.length) {
       state.currentReviewKey = null;
@@ -1492,8 +1503,10 @@
     const current = items.find((item) => item.key === state.currentReviewKey);
     const item = current || items[0];
     state.currentReviewKey = item.key;
-    const phrase = findPhrase(item.phrase);
-    if (phrase) state.currentPhrase = phrase;
+    if (syncPhrase) {
+      const phrase = findPhrase(item.phrase);
+      if (phrase) state.currentPhrase = phrase;
+    }
   }
 
   function currentReviewItem() {
@@ -1516,7 +1529,7 @@
     if (nextIndex < 0 || nextIndex >= items.length) return;
     state.currentReviewKey = items[nextIndex].key;
     state.reviewRevealed = false;
-    ensureReviewItem();
+    ensureReviewItem({ syncPhrase: true });
     renderAll();
   }
 
@@ -1526,7 +1539,7 @@
     const fallback = items[Math.min(Math.max(oldIndex, 0), Math.max(items.length - 1, 0))];
     state.currentReviewKey = same ? same.key : (fallback && fallback.key) || null;
     state.reviewRevealed = false;
-    ensureReviewItem();
+    ensureReviewItem({ syncPhrase: true });
   }
 
   function navList() {

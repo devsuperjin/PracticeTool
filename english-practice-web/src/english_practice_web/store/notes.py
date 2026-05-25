@@ -34,7 +34,25 @@ def _init_notes_table() -> None:
                 ")"
             )
         conn.execute("CREATE INDEX IF NOT EXISTS idx_notes_phrase ON notes(phrase)")
+        _canonicalize_note_phrases(conn)
         conn.commit()
+
+
+def _canonicalize_note_phrases(conn) -> None:
+    """Keep note phrase keys aligned to the canonical word list spelling."""
+    try:
+        from ..data import find_canonical_phrase
+    except Exception:
+        return
+
+    rows = conn.execute("SELECT id, phrase FROM notes").fetchall()
+    for note_id, phrase in rows:
+        canonical = find_canonical_phrase(phrase)
+        if canonical and canonical != phrase:
+            conn.execute(
+                "UPDATE notes SET phrase = ?, updated_at = datetime('now') WHERE id = ?",
+                (canonical, note_id),
+            )
 
 
 def _row_to_dict(row) -> dict:

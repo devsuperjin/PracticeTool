@@ -49,10 +49,22 @@ def _migrate_json() -> None:
         return
     if not isinstance(legacy, dict) or not legacy:
         return
+    try:
+        from ..data import find_canonical_phrase
+    except Exception:
+        find_canonical_phrase = None
+
+    rows = []
+    for phrase, content in legacy.items():
+        key = str(phrase).strip()
+        if find_canonical_phrase:
+            key = find_canonical_phrase(key) or key
+        rows.append((key, content))
+
     with connect() as conn:
         conn.executemany(
             "INSERT OR REPLACE INTO notes (phrase, content, updated_at) VALUES (?, ?, datetime('now'))",
-            [(k, v) for k, v in legacy.items()],
+            rows,
         )
         conn.commit()
     _JSON_PATH.rename(_JSON_PATH.with_suffix(".json.bak"))
