@@ -23,7 +23,9 @@ class NoteUpdateRequest(BaseModel):
 
 
 class ReadingRequest(BaseModel):
-    phrase: str = Field(min_length=1)
+    phrase: str | None = Field(default=None, min_length=1)
+    phrases: list[str] = Field(default_factory=list)
+    topic: str = ""
 
 
 class MarkRequest(BaseModel):

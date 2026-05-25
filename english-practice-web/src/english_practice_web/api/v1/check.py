@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from fastapi import APIRouter
+from fastapi import APIRouter, Request
 
 from ...data import lookup_phrase
 from ...models import CheckRequest, ReciteCheckRequest
@@ -10,7 +10,7 @@ router = APIRouter()
 
 
 @router.post("/check")
-def check_sentence(payload: CheckRequest) -> dict[str, str]:
+def check_sentence(payload: CheckRequest, request: Request) -> dict[str, str]:
     details = lookup_phrase(payload.phrase)
     prompt = (
         "I am practicing IELTS phrasal verbs.\n"
@@ -20,11 +20,11 @@ def check_sentence(payload: CheckRequest) -> dict[str, str]:
         f"My sentence: '{payload.sentence}'\n\n"
         "Please check if I used the phrasal verb correctly. Provide the response as plain text."
     )
-    return {"feedback": call_ollama(prompt)}
+    return {"feedback": call_ollama(prompt, model=request.headers.get("x-llm-model"))}
 
 
 @router.post("/check-recite")
-def check_recite(payload: ReciteCheckRequest) -> dict[str, str]:
+def check_recite(payload: ReciteCheckRequest, request: Request) -> dict[str, str]:
     details = lookup_phrase(payload.phrase)
     prompt = (
         "You are an IELTS English-Chinese bilingual tutor.\n"
@@ -36,4 +36,4 @@ def check_recite(payload: ReciteCheckRequest) -> dict[str, str]:
         "If incorrect, gently point out what is missing and give the correct Chinese meaning. "
         "Reply in Chinese."
     )
-    return {"feedback": call_ollama(prompt)}
+    return {"feedback": call_ollama(prompt, model=request.headers.get("x-llm-model"))}

@@ -17,12 +17,30 @@
             <span>PracticeTool v2</span>
           </div>
         </div>
-        <nav class="tabs" aria-label="Main views">
-          <button class="tab-btn" type="button" data-view-tab="dashboard">Dashboard</button>
-          <button class="tab-btn" type="button" data-view-tab="practice">Practice</button>
-          <button class="tab-btn" type="button" data-view-tab="recite">Recite</button>
-          <button class="tab-btn" type="button" data-view-tab="review">Review</button>
-          <button class="tab-btn" type="button" data-view-tab="select">Select</button>
+        <nav class="nav-menu" aria-label="Main navigation">
+          <button class="nav-item" type="button" data-view-tab="dashboard">Dashboard</button>
+          <button class="nav-item" type="button" data-view-tab="reading">Reading</button>
+          <div class="nav-menu-group">
+            <button class="nav-item nav-menu-trigger" type="button" data-nav-root="learning" data-menu-trigger="learning" aria-haspopup="true" aria-expanded="false">
+              <span>Learning</span>
+              <span aria-hidden="true">v</span>
+            </button>
+            <div class="menu-panel" role="menu" data-menu-panel="learning" hidden>
+              <button class="menu-item" role="menuitem" type="button" data-view-tab="practice">Practice</button>
+              <button class="menu-item" role="menuitem" type="button" data-view-tab="recite">Recite</button>
+              <button class="menu-item" role="menuitem" type="button" data-view-tab="review">Review</button>
+            </div>
+          </div>
+          <div class="nav-menu-group">
+            <button class="nav-item nav-menu-trigger" type="button" data-nav-root="settings" data-menu-trigger="settings" aria-haspopup="true" aria-expanded="false">
+              <span>Settings</span>
+              <span aria-hidden="true">v</span>
+            </button>
+            <div class="menu-panel" role="menu" data-menu-panel="settings" hidden>
+              <button class="menu-item" role="menuitem" type="button" data-view-tab="select">Select Words</button>
+              <button class="menu-item" role="menuitem" type="button" data-view-tab="settings">System</button>
+            </div>
+          </div>
         </nav>
         <div class="topbar-status">
           <span id="statusText">Loading</span>
@@ -243,6 +261,60 @@
             </article>
           </section>
 
+          <section id="page-reading" class="page reading-page" aria-labelledby="readingTitle">
+            <div class="reading-grid">
+              <article class="surface reading-controls">
+                <div class="panel-head">
+                  <div>
+                    <p class="eyebrow">LLM Reading</p>
+                    <h2 id="readingTitle">Generate Article</h2>
+                  </div>
+                  <span id="readingCount" class="review-session">0 chosen</span>
+                </div>
+
+                <div id="readingSelected" class="reading-selected"></div>
+
+                <div class="reading-picker">
+                  <label class="control wide">
+                    <span>Phrasal Verb</span>
+                    <select id="readingWordPicker" class="input"></select>
+                  </label>
+                  <button id="readingAddPicked" class="btn" type="button">Add</button>
+                  <button id="readingAddCurrent" class="btn" type="button">Current</button>
+                  <button id="readingAddSelected" class="btn" type="button">Selected</button>
+                  <button id="readingAddPlan" class="btn" type="button">Plan</button>
+                  <button id="readingRandom" class="btn btn-warning" type="button">Random 5</button>
+                  <button id="readingClear" class="btn btn-danger" type="button">Clear</button>
+                </div>
+
+                <label class="field-label" for="readingTopic">Topic</label>
+                <input id="readingTopic" class="input" type="text" placeholder="Optional topic, e.g. university teamwork">
+
+                <div class="action-row">
+                  <button id="readingGenerate" class="btn btn-primary" type="button">Generate Article</button>
+                </div>
+              </article>
+
+              <article class="surface reading-output">
+                <div id="readingEmpty" class="empty-state">Choose phrasal verbs and generate an article.</div>
+                <div id="readingResult" hidden>
+                  <p class="eyebrow">Article</p>
+                  <h2 id="readingResultTitle" class="reading-title"></h2>
+                  <div id="readingArticle" class="article-body"></div>
+                  <div id="readingVocabularyBlock" class="reading-block">
+                    <p class="eyebrow">Vocabulary</p>
+                    <div id="readingVocabulary" class="article-body compact"></div>
+                  </div>
+                  <div id="readingQuestionBlock" class="reading-block">
+                    <p class="eyebrow">Question</p>
+                    <p id="readingQuestion" class="reading-question"></p>
+                    <p id="readingAnswer" class="reading-answer"></p>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </section>
+
           <section id="page-select" class="page select-page" aria-labelledby="selectTitle">
             <div class="select-head">
               <div>
@@ -255,15 +327,6 @@
             </div>
 
             <div class="toolbar">
-              <label class="control">
-                <span>Default</span>
-                <select id="defaultView" class="input">
-                  <option value="dashboard">Dashboard</option>
-                  <option value="practice">Practice</option>
-                  <option value="recite">Recite</option>
-                  <option value="review">Review</option>
-                </select>
-              </label>
               <label class="control wide">
                 <span>Plan</span>
                 <select id="planSelect" class="input"></select>
@@ -286,10 +349,103 @@
               <button id="savePlan" class="btn btn-success" type="button">Save</button>
               <button id="deletePlan" class="btn btn-danger" type="button">Delete</button>
               <button id="deleteAllPlans" class="btn btn-danger" type="button">Delete All</button>
-              <button id="resetSystem" class="btn btn-ghost-danger" type="button">Reset Data</button>
             </div>
 
             <div id="selectGrid" class="select-grid"></div>
+          </section>
+
+          <section id="page-settings" class="page settings-page" aria-labelledby="settingsTitle">
+            <div class="select-head">
+              <div>
+                <p class="eyebrow">Settings</p>
+                <h2 id="settingsTitle">System</h2>
+              </div>
+            </div>
+
+            <div class="settings-grid">
+              <article class="surface settings-panel">
+                <div class="panel-head">
+                  <div>
+                    <p class="eyebrow">Interface</p>
+                    <h3>Appearance</h3>
+                  </div>
+                </div>
+                <label class="control wide">
+                  <span>Theme</span>
+                  <select id="appearanceMode" class="input">
+                    <option value="system">System</option>
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                  </select>
+                </label>
+                <label class="control wide">
+                  <span>Default View</span>
+                  <select id="defaultView" class="input">
+                    <option value="dashboard">Dashboard</option>
+                    <option value="practice">Practice</option>
+                    <option value="recite">Recite</option>
+                    <option value="review">Review</option>
+                    <option value="reading">Reading</option>
+                    <option value="select">Select</option>
+                    <option value="settings">Settings</option>
+                  </select>
+                </label>
+              </article>
+
+              <article class="surface settings-panel">
+                <div class="panel-head">
+                  <div>
+                    <p class="eyebrow">Memory</p>
+                    <h3>Review Behavior</h3>
+                  </div>
+                </div>
+                <div class="settings-row">
+                  <label class="control">
+                    <span>Review Mode</span>
+                    <select id="settingsReviewMode" class="input">
+                      <option value="balanced">Balanced</option>
+                      <option value="aggressive">Aggressive</option>
+                    </select>
+                  </label>
+                  <label class="control">
+                    <span>Free Time</span>
+                    <select id="settingsReviewMinutes" class="input">
+                      <option value="0">Open</option>
+                      <option value="5">5 min</option>
+                      <option value="10">10 min</option>
+                      <option value="15">15 min</option>
+                      <option value="30">30 min</option>
+                      <option value="45">45 min</option>
+                      <option value="60">60 min</option>
+                    </select>
+                  </label>
+                </div>
+              </article>
+
+              <article class="surface settings-panel">
+                <div class="panel-head">
+                  <div>
+                    <p class="eyebrow">AI</p>
+                    <h3>LLM Model</h3>
+                  </div>
+                </div>
+                <label class="control wide">
+                  <span>Model</span>
+                  <select id="llmModel" class="input"></select>
+                </label>
+                <p id="llmModelStatus" class="settings-note">Using default model.</p>
+              </article>
+
+              <article class="surface settings-panel danger-panel">
+                <div class="panel-head">
+                  <div>
+                    <p class="eyebrow">Danger</p>
+                    <h3>Data</h3>
+                  </div>
+                </div>
+                <button id="resetSystem" class="btn btn-ghost-danger" type="button">Reset Data</button>
+              </article>
+            </div>
           </section>
 
           <aside id="notesPanel" class="notes-panel" aria-label="Notes">

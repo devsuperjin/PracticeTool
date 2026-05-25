@@ -3,8 +3,11 @@
 
   const API_BASE = "/api/v1";
   const AUTH_TOKEN_KEY = "englishPracticeToken";
+  const LLM_MODEL_KEY = "englishPracticeLlmModel";
+  const APPEARANCE_KEY = "englishPracticeAppearance";
   const ALPHA = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i));
-  const VALID_VIEWS = new Set(["dashboard", "practice", "recite", "review", "select"]);
+  const VALID_VIEWS = new Set(["dashboard", "practice", "recite", "review", "reading", "select", "settings"]);
+  const systemThemeQuery = window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)") : null;
 
   const state = {
     phrases: [],
@@ -12,6 +15,9 @@
     marksCache: {},
     reviewItems: [],
     reviewSummary: {},
+    llmSettings: { default_model: "", model_options: [] },
+    readingWords: new Set(),
+    readingResult: null,
     plans: [],
     activePlan: null,
     currentPhrase: null,
@@ -33,6 +39,15 @@
   const refs = {};
   let toastTimer = 0;
 
+  applyAppearance();
+  if (systemThemeQuery) {
+    const handleSystemThemeChange = () => {
+      if (selectedAppearanceMode() === "system") applyAppearance("system");
+    };
+    if (systemThemeQuery.addEventListener) systemThemeQuery.addEventListener("change", handleSystemThemeChange);
+    else systemThemeQuery.addListener(handleSystemThemeChange);
+  }
+
   const api = {
     login: (username, password) =>
       fetchJson(`${API_BASE}/auth/login`, {
@@ -41,6 +56,7 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
       }),
+    getSettings: () => fetchJson(`${API_BASE}/settings`),
     listPhrases: () => fetchJson(`${API_BASE}/list`),
     listNotes: () => fetchJson(`${API_BASE}/notes`),
     listPlans: () => fetchJson(`${API_BASE}/plans`),
@@ -70,6 +86,12 @@
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ phrase, chinese_input: chineseInput }),
+      }),
+    generateReading: (phrases, topic) =>
+      fetchJson(`${API_BASE}/reading`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ phrases, topic }),
       }),
     savePlan: (name, words) =>
       fetchJson(`${API_BASE}/plans`, {
@@ -117,6 +139,8 @@
     refs.activePlanBadge = $("#activePlanBadge");
     refs.statusText = $("#statusText");
     refs.logoutButton = $("#logoutButton");
+    refs.menuTriggers = $all("[data-menu-trigger]");
+    refs.menuPanels = $all("[data-menu-panel]");
     refs.mainShell = $("#mainShell");
     refs.sidebarHead = $("#sidebarHead");
     refs.pages = {
@@ -124,7 +148,9 @@
       practice: $("#page-practice"),
       recite: $("#page-recite"),
       review: $("#page-review"),
+      reading: $("#page-reading"),
       select: $("#page-select"),
+      settings: $("#page-settings"),
     };
     refs.dashboardSubline = $("#dashboardSubline");
     refs.dashboardSession = $("#dashboardSession");
@@ -190,11 +216,36 @@
     refs.reviewKnown = $("#reviewKnown");
     refs.reviewUnknown = $("#reviewUnknown");
     refs.reviewNext = $("#reviewNext");
+    refs.readingCount = $("#readingCount");
+    refs.readingSelected = $("#readingSelected");
+    refs.readingWordPicker = $("#readingWordPicker");
+    refs.readingAddPicked = $("#readingAddPicked");
+    refs.readingAddCurrent = $("#readingAddCurrent");
+    refs.readingAddSelected = $("#readingAddSelected");
+    refs.readingAddPlan = $("#readingAddPlan");
+    refs.readingRandom = $("#readingRandom");
+    refs.readingClear = $("#readingClear");
+    refs.readingTopic = $("#readingTopic");
+    refs.readingGenerate = $("#readingGenerate");
+    refs.readingEmpty = $("#readingEmpty");
+    refs.readingResult = $("#readingResult");
+    refs.readingResultTitle = $("#readingResultTitle");
+    refs.readingArticle = $("#readingArticle");
+    refs.readingVocabularyBlock = $("#readingVocabularyBlock");
+    refs.readingVocabulary = $("#readingVocabulary");
+    refs.readingQuestionBlock = $("#readingQuestionBlock");
+    refs.readingQuestion = $("#readingQuestion");
+    refs.readingAnswer = $("#readingAnswer");
     refs.notesPanel = $("#notesPanel");
     refs.notesTitle = $("#notesTitle");
     refs.addNote = $("#addNote");
     refs.notesList = $("#notesList");
+    refs.appearanceMode = $("#appearanceMode");
     refs.defaultView = $("#defaultView");
+    refs.settingsReviewMode = $("#settingsReviewMode");
+    refs.settingsReviewMinutes = $("#settingsReviewMinutes");
+    refs.llmModel = $("#llmModel");
+    refs.llmModelStatus = $("#llmModelStatus");
     refs.planSelect = $("#planSelect");
     refs.planName = $("#planName");
     refs.planDays = $("#planDays");
@@ -225,7 +276,22 @@
 
   function bindEvents() {
     $all("[data-view-tab]").forEach((button) => {
-      button.addEventListener("click", () => setView(button.dataset.viewTab));
+      button.addEventListener("click", () => {
+        setView(button.dataset.viewTab);
+        closeMenus();
+      });
+    });
+    refs.menuTriggers.forEach((button) => {
+      button.addEventListener("click", (event) => {
+        event.stopPropagation();
+        toggleMenu(button.dataset.menuTrigger);
+      });
+    });
+    document.addEventListener("click", (event) => {
+      if (!event.target.closest(".nav-menu")) closeMenus();
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeMenus();
     });
     refs.loginForm.addEventListener("submit", handleLogin);
     refs.logoutButton.addEventListener("click", logout);
@@ -273,6 +339,27 @@
     refs.reviewRefresh.addEventListener("click", () => refreshReview(refs.reviewRefresh));
     refs.reviewMode.addEventListener("change", () => changeReviewSettings());
     refs.reviewMinutes.addEventListener("change", () => changeReviewSettings());
+    refs.readingAddPicked.addEventListener("click", () => addReadingWords([refs.readingWordPicker.value]));
+    refs.readingAddCurrent.addEventListener("click", () => addReadingWords(state.currentPhrase ? [state.currentPhrase.phrase] : []));
+    refs.readingAddSelected.addEventListener("click", () => addReadingWords([...state.selectedSet]));
+    refs.readingAddPlan.addEventListener("click", () => addReadingWords(state.activePlan ? state.activePlan.words || [] : navList().map((item) => item.phrase)));
+    refs.readingRandom.addEventListener("click", () => {
+      const pool = navList().map((item) => item.phrase);
+      state.readingWords = new Set(shuffle(pool).slice(0, Math.min(5, pool.length)));
+      renderReading();
+    });
+    refs.readingClear.addEventListener("click", () => {
+      state.readingWords.clear();
+      state.readingResult = null;
+      renderReading();
+    });
+    refs.readingSelected.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-reading-remove]");
+      if (!button) return;
+      state.readingWords.delete(button.dataset.readingRemove);
+      renderReading();
+    });
+    refs.readingGenerate.addEventListener("click", () => generateReading(refs.readingGenerate));
     refs.revealMeaning.addEventListener("click", () => {
       state.revealed = !state.revealed;
       renderRecite();
@@ -295,10 +382,14 @@
     refs.modalSave.addEventListener("click", saveModalNote);
     refs.modalDelete.addEventListener("click", deleteModalNote);
 
+    refs.appearanceMode.addEventListener("change", saveAppearanceMode);
     refs.defaultView.addEventListener("change", () => {
       localStorage.setItem("defaultView", refs.defaultView.value);
       showToast("Default view saved.");
     });
+    refs.settingsReviewMode.addEventListener("change", () => changeReviewSettingsFromSettings());
+    refs.settingsReviewMinutes.addEventListener("change", () => changeReviewSettingsFromSettings());
+    refs.llmModel.addEventListener("change", () => saveLlmModel());
 
     refs.planSelect.addEventListener("change", () => {
       const plan = state.plans.find((item) => item.name === refs.planSelect.value) || null;
@@ -376,6 +467,8 @@
     state.marksCache = {};
     state.reviewItems = [];
     state.reviewSummary = {};
+    state.readingWords.clear();
+    state.readingResult = null;
     state.plans = [];
     state.activePlan = null;
     state.currentPhrase = null;
@@ -388,13 +481,15 @@
 
   async function loadData() {
     setStatus("Loading");
-    const [phrases, notes, plans, marks, review] = await Promise.all([
+    const [settings, phrases, notes, plans, marks, review] = await Promise.all([
+      api.getSettings(),
       api.listPhrases(),
       api.listNotes(),
       api.listPlans(),
       api.listMarks(),
       api.listReview(),
     ]);
+    applySettingsData(settings);
     state.phrases = Array.isArray(phrases) ? phrases : [];
     state.notesCache = notes && typeof notes === "object" ? notes : {};
     state.plans = Array.isArray(plans) ? plans : [];
@@ -413,8 +508,10 @@
     renderPractice();
     renderRecite();
     renderReview();
+    renderReading();
     renderNotes();
     renderSelect();
+    renderSettings();
   }
 
   function renderStatus() {
@@ -624,6 +721,56 @@
     refs.reviewReveal.textContent = state.reviewRevealed ? "Hide Meaning" : "Show Meaning";
   }
 
+  function renderReading() {
+    renderReadingPicker();
+    renderReadingSelected();
+
+    const result = state.readingResult;
+    refs.readingEmpty.hidden = !!result;
+    refs.readingResult.hidden = !result;
+    if (!result) return;
+
+    refs.readingResultTitle.textContent = result.title || "Generated Reading";
+    refs.readingArticle.textContent = result.article || result.passage || "";
+    refs.readingVocabularyBlock.hidden = !result.vocabulary;
+    refs.readingVocabulary.textContent = result.vocabulary || "";
+    refs.readingQuestionBlock.hidden = !(result.question || result.answer);
+    refs.readingQuestion.textContent = result.question || "";
+    refs.readingAnswer.textContent = result.answer ? `Answer: ${result.answer}` : "";
+  }
+
+  function renderReadingPicker() {
+    const selectedValue = refs.readingWordPicker.value;
+    clear(refs.readingWordPicker);
+    state.phrases.forEach((phrase) => {
+      refs.readingWordPicker.appendChild(el("option", { value: phrase.phrase, text: phrase.phrase }));
+    });
+    if (selectedValue && findPhrase(selectedValue)) refs.readingWordPicker.value = selectedValue;
+    else if (state.currentPhrase) refs.readingWordPicker.value = state.currentPhrase.phrase;
+  }
+
+  function renderReadingSelected() {
+    const words = [...state.readingWords];
+    refs.readingCount.textContent = `${words.length} chosen`;
+    clear(refs.readingSelected);
+
+    if (!words.length) {
+      refs.readingSelected.appendChild(el("div", { class: "dashboard-empty", text: "No phrasal verbs chosen." }));
+      return;
+    }
+
+    words.forEach((word) => {
+      refs.readingSelected.appendChild(
+        el("button", {
+          type: "button",
+          class: "reading-chip",
+          title: "Remove",
+          dataset: { readingRemove: word },
+        }, [el("span", { text: word }), el("b", { text: "x" })]),
+      );
+    });
+  }
+
   function renderReviewStats() {
     const summary = state.reviewSummary || {};
     refs.reviewDueCount.textContent = String(summary.due || 0);
@@ -750,11 +897,69 @@
   }
 
   function renderSelect() {
-    refs.defaultView.value = localStorage.getItem("defaultView") || "dashboard";
     renderPlanSelect();
     renderSelectFilterButtons();
     renderSelectedCount();
     renderSelectGrid();
+  }
+
+  function renderSettings() {
+    refs.appearanceMode.value = selectedAppearanceMode();
+    refs.defaultView.value = localStorage.getItem("defaultView") || "dashboard";
+    refs.settingsReviewMode.value = state.reviewMode;
+    refs.settingsReviewMinutes.value = String(state.reviewMinutes);
+    renderLlmOptions();
+  }
+
+  function saveAppearanceMode() {
+    const mode = normalizeAppearanceMode(refs.appearanceMode.value);
+    if (mode === "system") localStorage.removeItem(APPEARANCE_KEY);
+    else localStorage.setItem(APPEARANCE_KEY, mode);
+    applyAppearance(mode);
+    showToast(`Theme set to ${mode}.`);
+  }
+
+  function selectedAppearanceMode() {
+    return normalizeAppearanceMode(localStorage.getItem(APPEARANCE_KEY) || "system");
+  }
+
+  function normalizeAppearanceMode(mode) {
+    return ["light", "dark", "system"].includes(mode) ? mode : "system";
+  }
+
+  function applyAppearance(mode = selectedAppearanceMode()) {
+    const normalized = normalizeAppearanceMode(mode);
+    const resolved = normalized === "system"
+      ? (systemThemeQuery && systemThemeQuery.matches ? "dark" : "light")
+      : normalized;
+    document.documentElement.dataset.appearance = normalized;
+    document.documentElement.dataset.theme = resolved;
+  }
+
+  function renderLlmOptions() {
+    const settings = state.llmSettings || {};
+    const options = Array.isArray(settings.model_options) ? settings.model_options : [];
+    const defaultModel = settings.default_model || options[0] || "";
+    const savedModel = localStorage.getItem(LLM_MODEL_KEY) || defaultModel;
+    clear(refs.llmModel);
+
+    options.forEach((model) => {
+      refs.llmModel.appendChild(
+        el("option", {
+          value: model,
+          text: model === defaultModel ? `${model} (default)` : model,
+        }),
+      );
+    });
+
+    if (savedModel && !options.includes(savedModel)) {
+      refs.llmModel.appendChild(el("option", { value: savedModel, text: `${savedModel} (unavailable)` }));
+    }
+    refs.llmModel.value = savedModel || "";
+    refs.llmModel.disabled = !refs.llmModel.options.length;
+    refs.llmModelStatus.textContent = selectedLlmModel()
+      ? `AI requests will use ${selectedLlmModel()}.`
+      : "Using default model.";
   }
 
   function renderPlanSelect() {
@@ -832,6 +1037,25 @@
     container.textContent = text || "";
   }
 
+  function toggleMenu(menuName) {
+    const panel = [...refs.menuPanels].find((item) => item.dataset.menuPanel === menuName);
+    const trigger = [...refs.menuTriggers].find((item) => item.dataset.menuTrigger === menuName);
+    if (!panel || !trigger) return;
+    const willOpen = panel.hidden;
+    closeMenus(menuName);
+    panel.hidden = !willOpen;
+    trigger.setAttribute("aria-expanded", String(willOpen));
+  }
+
+  function closeMenus(except = "") {
+    refs.menuPanels.forEach((panel) => {
+      if (panel.dataset.menuPanel !== except) panel.hidden = true;
+    });
+    refs.menuTriggers.forEach((trigger) => {
+      if (trigger.dataset.menuTrigger !== except) trigger.setAttribute("aria-expanded", "false");
+    });
+  }
+
   function setView(view, options = {}) {
     const next = normalizeView(view);
     state.view = next;
@@ -842,11 +1066,14 @@
     $all("[data-view-tab]").forEach((button) => {
       button.classList.toggle("active", button.dataset.viewTab === next);
     });
+    $all("[data-nav-root]").forEach((button) => {
+      button.classList.toggle("active", navRootForView(next) === button.dataset.navRoot);
+    });
     refs.mainShell.classList.toggle("select-mode", next === "select");
-    refs.mainShell.classList.toggle("full-mode", next === "select" || next === "dashboard");
+    refs.mainShell.classList.toggle("full-mode", next === "select" || next === "dashboard" || next === "reading" || next === "settings");
 
     if (next === "review") ensureReviewItem();
-    else if (next !== "select" && next !== "dashboard") ensureCurrentPhrase();
+    else if (next !== "select" && next !== "dashboard" && next !== "reading" && next !== "settings") ensureCurrentPhrase();
     if (options.updateHash !== false && location.hash.slice(1) !== next) {
       history.replaceState(null, "", `#${next}`);
     }
@@ -915,6 +1142,36 @@
     });
   }
 
+  function addReadingWords(words) {
+    const cleanWords = words.filter((word) => word && findPhrase(word));
+    if (!cleanWords.length) {
+      showToast("No phrasal verbs to add.");
+      return;
+    }
+
+    const before = state.readingWords.size;
+    cleanWords.forEach((word) => {
+      if (state.readingWords.size < 8) state.readingWords.add(word);
+    });
+    if (before + cleanWords.length > 8) showToast("Reading uses up to 8 phrasal verbs.");
+    renderReading();
+  }
+
+  async function generateReading(button) {
+    const phrases = [...state.readingWords];
+    if (!phrases.length) {
+      showToast("Choose at least one phrasal verb.");
+      return;
+    }
+
+    await withBusy(button, "Generating...", async () => {
+      state.readingResult = null;
+      renderReading();
+      state.readingResult = await api.generateReading(phrases, refs.readingTopic.value.trim());
+      renderReading();
+    });
+  }
+
   async function saveMark(meaning, status, button) {
     await withBusy(button, "...", async () => {
       const result = await api.saveMark(markKey(meaning), status);
@@ -956,11 +1213,29 @@
     state.reviewMinutes = Number(refs.reviewMinutes.value || 0);
     localStorage.setItem("reviewMode", state.reviewMode);
     localStorage.setItem("reviewMinutes", String(state.reviewMinutes));
+    refs.settingsReviewMode.value = state.reviewMode;
+    refs.settingsReviewMinutes.value = String(state.reviewMinutes);
     state.currentReviewKey = null;
     state.reviewRevealed = false;
     await refreshReviewData();
     ensureReviewItem();
     renderAll();
+  }
+
+  async function changeReviewSettingsFromSettings() {
+    refs.reviewMode.value = refs.settingsReviewMode.value;
+    refs.reviewMinutes.value = refs.settingsReviewMinutes.value;
+    await changeReviewSettings();
+    showToast("Review settings saved.");
+  }
+
+  function saveLlmModel() {
+    const selected = refs.llmModel.value;
+    const defaultModel = state.llmSettings.default_model || "";
+    if (!selected || selected === defaultModel) localStorage.removeItem(LLM_MODEL_KEY);
+    else localStorage.setItem(LLM_MODEL_KEY, selected);
+    renderLlmOptions();
+    showToast("LLM model saved.");
   }
 
   function handleNoteClick(event) {
@@ -1170,6 +1445,15 @@
   function applyReviewData(data) {
     state.reviewItems = Array.isArray(data && data.items) ? data.items : [];
     state.reviewSummary = data && typeof data.summary === "object" ? data.summary : {};
+  }
+
+  function applySettingsData(data) {
+    const llm = data && typeof data.llm === "object" ? data.llm : {};
+    const options = Array.isArray(llm.model_options) ? llm.model_options : [];
+    state.llmSettings = {
+      default_model: typeof llm.default_model === "string" ? llm.default_model : options[0] || "",
+      model_options: options,
+    };
   }
 
   function setActivePlan(plan) {
@@ -1415,6 +1699,8 @@
     const headers = new Headers(fetchOptions.headers || {});
     const token = authToken();
     if (auth && token) headers.set("Authorization", `Bearer ${token}`);
+    const model = selectedLlmModel();
+    if (auth && model) headers.set("X-LLM-Model", model);
     fetchOptions.headers = headers;
 
     const response = await fetch(url, fetchOptions);
@@ -1437,6 +1723,13 @@
 
   function clearAuthToken() {
     localStorage.removeItem(AUTH_TOKEN_KEY);
+  }
+
+  function selectedLlmModel() {
+    const selected = localStorage.getItem(LLM_MODEL_KEY);
+    const defaultModel = state.llmSettings.default_model || "";
+    if (!selected || selected === defaultModel) return "";
+    return selected;
   }
 
   function showLogin(message = "") {
@@ -1488,8 +1781,13 @@
   }
 
   function normalizeView(view) {
-    if (view === "settings") return "select";
     return VALID_VIEWS.has(view) ? view : "dashboard";
+  }
+
+  function navRootForView(view) {
+    if (["practice", "recite", "review"].includes(view)) return "learning";
+    if (["select", "settings"].includes(view)) return "settings";
+    return view;
   }
 
   function sanitizePlanName(name) {
