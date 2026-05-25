@@ -1,203 +1,132 @@
 ---
 name: backend-api
-description: FastAPI backend development skill for building, debugging, and refactoring REST APIs with strict layered architecture and safe modification rules.
----
-
-# FastAPI Skill
-
-Use this skill for FastAPI API development, debugging, and refactoring.
-
----
-
-## Architecture (Strict)
-
-Follow this structure:
-
-- router: HTTP layer only (no logic)
-- service: business logic only
-- repository: database access only
-- schemas: Pydantic models only
-- core: config / auth / shared utilities
-
-Never mix layers.
-
----
-
-## API Rules
-
-- RESTful design only
-- Use `/api/v1` versioning
-- JSON request/response only
-- Pydantic required for all inputs/outputs
-- One endpoint = one responsibility
-
----
-
-## Dependency Rules
-
-- Use `Depends()` for:
-  - DB session
-  - auth user
-  - shared services
-
-- Never create DB session inside router
-- Always close DB sessions properly
-
----
-
-## Database Rules
-
-- Use ORM (SQLAlchemy preferred)
-- No DB logic in routers
-- No raw SQL unless explicitly required
-- Use transactions for multi-step writes
-
----
-
-## Authentication
-
-- JWT-based auth when needed
-- Enforce RBAC if roles exist
-- Validate permissions in service layer
-
----
-
-## Error Handling
-
-Standard error response:
-
-```json
-{
-  "success": false,
-  "code": "ERROR_CODE",
-  "message": "message"
-}
----
-name: backend-api
-description: FastAPI backend development for this project's English Practice web app. Use when building, debugging, or refactoring REST API routes, Pydantic models, SQLite persistence, Ollama LLM integration, or store-layer code. Covers the actual architecture (router → store/LLM, no service layer), SQLite with JSON migration, and Ollama prompt-calling patterns.
+description: FastAPI backend development for this project's English Practice web app. Use when building, debugging, or refactoring API routes, Pydantic models, SQLite stores, auth, review/mark logic, Ollama integration, or backend configuration under english-practice-web/src/english_practice_web.
 ---
 
 # Backend API
 
-FastAPI backend for the English Practice web app. Architecture is intentionally flat: routers handle HTTP and call the store layer or Ollama directly. There is no service or repository layer.
+Use this skill for backend work in `english-practice-web/`. The app is a FastAPI service for an English phrasal-verb practice tool. Keep changes aligned with the existing flat router-to-store architecture.
 
-## Project structure
+## Project Map
 
-```
-src/english_practice_web/
-├── __init__.py          # FastAPI app, static mounts, route includes
-├── config.py            # Env vars: OLLAMA_URL, MODEL_NAME, PORT
-├── models.py            # Pydantic request/response models
-├── server.py            # uvicorn entrypoint
-├── data.py              # Loads phrasal_verbs.json into memory
-├── store/               # SQLite persistence layer
-│   ├── __init__.py      # Public exports
-│   ├── base.py          # connect(), init_db(), JSON migration
-│   ├── notes.py         # Notes CRUD
-│   └── plans.py         # Plans CRUD
-└── api/v1/
-    ├── __init__.py      # Aggregates all routers
-    ├── phrases.py       # GET /next, GET /list
-    ├── check.py         # POST /check, POST /check-recite (Ollama)
-    ├── reading.py       # POST /reading (Ollama)
-    ├── notes.py         # GET/POST /notes, /notes/{phrase}
-    └── plans.py         # CRUD /plans, /plans/{name}
+```text
+english-practice-web/
+|-- pyproject.toml
+|-- phrasal_verbs.json
+|-- data/notes.db
+`-- src/english_practice_web/
+    |-- __init__.py          # FastAPI app, static mounts, API include, SPA fallback
+    |-- auth.py              # Local JWT encode/decode and bearer dependency
+    |-- config.py            # Env configuration
+    |-- data.py              # Phrasal-verb data loading and canonical lookup
+    |-- memory.py            # Review scheduling helpers
+    |-- models.py            # Pydantic request/response models
+    |-- ollama.py            # Shared Ollama calls and model discovery
+    |-- server.py            # Uvicorn entrypoint
+    |-- store/               # SQLite persistence modules
+    `-- api/v1/              # FastAPI routers
 ```
 
-## Router conventions
+## Architecture
 
-- Each router file uses `APIRouter()` and is included in `api/v1/__init__.py`
-- Routers call the store layer or Ollama directly — no intermediate service layer
-- Use `from ...models import ...` for Pydantic schemas
-- Use `from ...store import ...` for persistence
-- Use `from ...config import MODEL_NAME, OLLAMA_URL` for LLM config
-- Use `from ...data import phrasal_data` for the in-memory phrase list
+- Routers live in `api/v1/*.py` and are included from `api/v1/__init__.py`.
+- Most routers are protected with `Depends(require_current_user)` at include time. Keep `/auth/login` public.
+- Routers may call store modules, `data.py`, `memory.py`, or `ollama.py` directly. Do not introduce a service/repository layer unless the project already moves that way.
+- Pydantic request/response models belong in `models.py`.
+- SQLite table creation and migrations belong in `store/base.py:init_db()`.
+
+## API Conventions
+
+- Use `/api/v1` resource routes; the prefix is applied in `__init__.py`.
+- Return JSON-compatible dicts/lists or Pydantic response models.
+- Validate inputs with Pydantic. Use `Field(min_length=1)` for required strings and narrow patterns when the accepted values are fixed.
+- Use `HTTPException` for expected client or not-found errors. Let unexpected exceptions surface through FastAPI.
+- Keep endpoint responsibilities narrow. Add a new route when behavior becomes distinct.
 
 ```python
-from fastapi import APIRouter
-from ...models import CheckRequest
-from ...config import MODEL_NAME, OLLAMA_URL
+from fastapi import APIRouter, HTTPException
+
+from ...models import PlanRequest
+from ...store import plans
 
 router = APIRouter()
 
+
+@router.post("/plans")
+def save_plan(payload: PlanRequest) -> dict:
+    if not payload.name.strip():
+        raise HTTPException(status_code=400, detail="Plan name is required")
+    return plans.save_plan(payload.name, payload.words)
+```
+
+## Auth
+
+- Auth is local HMAC/JWT logic in `auth.py`; it does not use PyJWT.
+- Config comes from `ADMIN_USERNAME`, `ADMIN_PASSWORD`, `JWT_SECRET`, and `JWT_EXPIRES_MINUTES`.
+- Protected requests expect `Authorization: Bearer <token>`.
+- When adding protected routers, include them in `api/v1/__init__.py` with the shared `_protected` dependency list.
+
+## SQLite Stores
+
+The database is `english-practice-web/data/notes.db`. Existing store modules own their tables:
+
+- `store/notes.py`: note CRUD keyed by canonical phrase.
+- `store/plans.py`: named word lists; `words` is stored as JSON text.
+- `store/recite_marks.py`: mark history and latest known/unknown status.
+- `store/base.py`: `connect()`, `init_db()`, migrations, and reset.
+
+When adding persistence:
+
+1. Add a focused module under `store/`.
+2. Export public functions from `store/__init__.py`.
+3. Add table creation/migration calls in `store/base.py:init_db()`.
+4. Use parameterized SQLite calls and explicit commits inside `with connect() as conn`.
+5. Use `json.dumps(..., ensure_ascii=False)` for JSON text columns and `json.loads(...)` when reading.
+
+## Ollama
+
+Use `ollama.call_ollama(prompt, timeout=15, model=None)` for AI calls. It handles connection errors and returns a user-facing string. The selected model may come from the `X-LLM-Model` request header:
+
+```python
+from fastapi import APIRouter, Request
+
+from ...ollama import call_ollama
+
+router = APIRouter()
+
+
 @router.post("/check")
-def check_sentence(payload: CheckRequest) -> dict[str, str]:
-    ...
+def check_sentence(payload: CheckRequest, request: Request) -> dict[str, str]:
+    prompt = f"..."
+    return {"feedback": call_ollama(prompt, model=request.headers.get("x-llm-model"))}
 ```
 
-## Pydantic models
+Keep prompts English by default, include the phrase/meaning/user input, and state the desired reply language when needed.
 
-All request/response models live in `models.py`. Use `Field(min_length=1)` for required strings. Keep models flat — no nested objects.
+## Review And Marks
 
-```python
-class CheckRequest(BaseModel):
-    phrase: str = Field(min_length=1)
-    sentence: str = Field(min_length=1)
+- Mark keys are phrase strings unless a phrase has multiple meanings, then use `phrase::meaning_index`.
+- Keep mark-key generation consistent with frontend `markKey()` and backend migration logic.
+- Review endpoints should use `memory.py` helpers instead of duplicating scheduling rules.
+
+## Config And Run
+
+Environment defaults live in `config.py`:
+
+```text
+PORT=8080
+JWT_SECRET=practice-tool-local-secret
+JWT_EXPIRES_MINUTES=720
+ADMIN_USERNAME=admin
+ADMIN_PASSWORD=admin
+OLLAMA_URL=http://localhost:11434/api/generate
+OLLAMA_MODEL=llama3.2:latest
+OLLAMA_MODELS=llama3.2:latest
 ```
 
-## Ollama integration
+Useful checks from `english-practice-web/`:
 
-Call Ollama via `requests.post` with a prompt string. Always handle `requests.RequestException` and return a user-friendly error message.
-
-```python
-def _call_ollama(prompt: str) -> str:
-    try:
-        resp = requests.post(OLLAMA_URL, json={
-            "model": MODEL_NAME, "prompt": prompt, "stream": False
-        }, timeout=15)
-        resp.raise_for_status()
-        return resp.json().get("response", "No response from AI.")
-    except requests.RequestException as exc:
-        return f"Connection error: {exc}. Is Ollama running?"
-```
-
-When building prompts, include the phrase, its meaning, and the user's input. Keep prompts in English for the AI but specify reply language at the end when needed (e.g. "Reply in Chinese.").
-
-## Store layer (SQLite)
-
-Database lives at `data/notes.db` (created by `store/base.py`). Two tables: `notes` and `plans`.
-
-- `store/base.py` — `connect()` returns a connection with WAL mode; `init_db()` creates tables and runs JSON migration
-- `store/notes.py` — `get(phrase)`, `get_all()`, `save(phrase, content)`, `delete(phrase)`
-- `store/plans.py` — `list_plans()`, `get_plan(name)`, `save_plan(name, words)`, `delete_plan(name)`
-
-Plans store `words` as a JSON string column. Always use `json.dumps(..., ensure_ascii=False)` when writing and `json.loads(...)` when reading.
-
-When adding a new table:
-1. Create the module under `store/`
-2. Export it from `store/__init__.py`
-3. Call its init function from `store/base.py:init_db()`
-
-## JSON migration
-
-Legacy notes were stored in `notes.json`. On startup, `_migrate_json()` reads it, inserts into SQLite, and renames the file to `.json.bak`. Follow this pattern for any future migrations.
-
-## API design rules
-
-- RESTful resource design: `/api/v1/{resource}`
-- JSON request/response only
-- All inputs validated through Pydantic models
-- Error responses use `HTTPException` with appropriate status codes
-- One endpoint per responsibility — don't overload a single route with multiple concerns
-
-## Error handling
-
-Use `HTTPException` for known failure cases:
-
-```python
-raise HTTPException(status_code=400, detail="Unknown phrasal verb: " + phrase)
-raise HTTPException(status_code=404, detail="Plan not found")
-raise HTTPException(status_code=500, detail="Phrasal data unavailable")
-```
-
-Don't wrap every endpoint in try/except — let FastAPI's default error handling catch unexpected exceptions.
-
-## Config
-
-All environment variables in `config.py` with sensible defaults:
-
-```python
-OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434/api/generate")
-MODEL_NAME = os.getenv("OLLAMA_MODEL", "llama3.2:latest")
-PORT = int(os.getenv("PORT", "8080"))
+```bash
+uv run python -m compileall -q src/english_practice_web
+uv run python -m english_practice_web.server
 ```

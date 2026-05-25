@@ -1,247 +1,118 @@
 ---
 name: web
-description: This document defines the technical capabilities and execution boundaries for a full-stack web development environment.
-
----
-
-# Web Development Skills (Agent Spec)
-
-This document defines the technical capabilities and execution boundaries for a full-stack web development environment.
-
-It is optimized for AI coding agents, ensuring consistent architecture decisions, implementation patterns, and tooling preferences.
-
----
-
-## 1. Core Web Stack
-
-### Frontend
-- HTML5 (semantic structure, accessibility-first design)
-- CSS3 (Flexbox, Grid, responsive layouts, mobile-first)
-- JavaScript (ES6+, async/await, modules)
-- TypeScript (strict typing preferred)
-
-### Frameworks
-- Vue 3 (Composition API preferred)
-- React (functional components, hooks)
-- Vue Router / React Router
-- Pinia / Redux (state management)
-
-### UI Layer
-- Component-based architecture
-- Reusable design system patterns
-- UI frameworks:
-  - Element Plus
-  - Arco Design
-- Responsive UI across desktop/mobile
-
----
-
-## 2. Backend Systems
-
-### Languages
-- Python (primary backend language)
-
-### Frameworks
-- FastAPI (preferred for APIs)
-- Flask (lightweight services)
-- Django (full-stack monolithic apps if required)
-
-### API Design
-- RESTful API (strict resource-based design)
-- JSON as standard payload format
-- Versioned APIs (/api/v1/)
-
-### Authentication & Security
-- JWT-based authentication
-- Role-Based Access Control (RBAC)
-- Password hashing (bcrypt/argon2)
-- Input validation and sanitization
-
----
-
-## 3. Data Layer
-
-### Databases
-- MySQL / MariaDB (primary relational DB)
-- Redis (cache / session / queue support)
-
-### Data Modeling
-- Normalized schema design (3NF preferred unless performance requires denormalization)
-- Indexing strategy for query optimization
-- Transaction-safe operations
-
----
-
-## 4. System Architecture
-
-- Frontend / Backend separation (decoupled architecture)
-- Service-oriented design (modular services)
-- Layered backend architecture:
-  - Controller → Service → Repository → DB
-- Stateless API design where possible
-
----
-
-## 5. DevOps & Deployment
-
-### Operating Environment
-- Linux (Ubuntu preferred)
-
-### Infrastructure
-- Nginx (reverse proxy / load balancing)
-- Docker (containerized deployment)
-
-### Deployment Patterns
-- Environment-based config (.env)
-- Production vs development separation
-- Log-based debugging (structured logs preferred)
-
----
-
-## 6. Networking & Protocols
-
-- HTTP/HTTPS fundamentals
-- TCP/IP basic understanding
-- CORS handling strategy
-- WebSocket (real-time communication)
-- REST API conventions compliance
-
----
-
-## 7. Engineering Standards (Agent Rules)
-
-### Code Quality
-- Clean, modular, and reusable code
-- Strict separation of concerns
-- Avoid business logic in controllers
-- Prefer explicit over implicit behavior
-
-### Error Handling
-- Centralized error handling strategy
-- Consistent API error response format:
-  ```json
-  {
-    "code": "ERROR_CODE",
-    "message": "human readable message"
-  }
----
-name: web
-description: Vanilla JS single-page frontend for the English Practice web app. Use when building, modifying, or debugging the UI layer: DOM manipulation, CSS with Arco Design tokens, fetch-based API calls, modal dialogs, and sidebar/header layout patterns. Covers the actual frontend stack — no frameworks.
+description: "Frontend development for this project's English Practice web app. Use when building, modifying, or debugging the current vanilla JS v2 UI at /v2/: DOM rendering, CSS tokens, auth-aware fetch calls, dashboard/practice/recite/review/reading/select/settings views, notes modals, plans, and light/dark appearance."
 ---
 
 # Frontend UI
 
-Single-page vanilla JS app with three views: Select, Practice, Recite. Served as static files by FastAPI at `/ui/`. The index route returns `index.html` directly.
+Use this skill for frontend work in `english-practice-web/src/english_practice_web/ui_v2/`. This is the current UI served at `/v2/`. There is also an older Vue/Vite UI under `ui/`; only work there when the user explicitly asks for the Vue app.
 
-## File layout
+## File Layout
 
-```
-src/english_practice_web/ui/
-├── index.html    # Structure: sidebar, header tabs, three page sections, modal
-├── style.css     # Arco Design-inspired CSS variables and layout
-└── app.js        # All JS logic in one IIFE module
-```
-
-## HTML structure
-
-Fixed layout with three zones:
-
-- **Sidebar** (`.arco-sider`): Fixed left, 280px. Contains word list grouped by first letter, collapsible letter groups, and an A-Z alpha bar.
-- **Header** (`.arco-header`): Fixed top, starting after sidebar. Three tab buttons for Select / Practice / Recite.
-- **Main** (`.arco-main`): Scrollable content area with three `.page` sections, only one active.
-- **Modal** (`.modal-overlay`): Notes editor, shared across Practice and Recite views.
-
-## CSS conventions
-
-All design tokens live in CSS custom properties under `:root`:
-
-```css
-:root {
-  --arcoblue-6: #165DFF;
-  --green-6: #00B42A;
-  --orange-6: #FF7D00;
-  --red-6: #F53F3F;
-  --purple-6: #722ED1;
-  --gray-1 through --gray-10;
-  --sidebar-w: 280px;
-  --header-h: 48px;
-  --radius-sm: 2px; --radius: 4px; --radius-lg: 8px;
-  --shadow-card: 0 2px 5px rgba(0,0,0,.06);
-  --shadow-modal: 0 4px 20px rgba(0,0,0,.12);
-}
+```text
+english-practice-web/src/english_practice_web/ui_v2/
+|-- index.html    # Static shell and all view markup
+|-- style.css     # Design tokens, layout, light/dark themes
+`-- app.js        # Single IIFE with state, API calls, events, renderers
 ```
 
-When adding new UI elements, use existing CSS variables. Prefix custom component classes with `arco-` for visual consistency. Follow the existing class naming: `.arco-btn`, `.arco-btn-primary`, `.arco-card`, `.arco-input`, `.arco-textarea`, `.arco-select`, `.arco-feedback`.
+FastAPI mounts this folder as static HTML at `/v2/` from `english_practice_web/__init__.py`.
 
-## JavaScript architecture
+## UI Structure
 
-All logic in one IIFE inside `app.js`:
+- Topbar: brand, dashboard/reading buttons, Learning and Settings menus, status, logout.
+- Sidebar: alphabet shortcuts, grouped word list, current plan badge, note/mark dots.
+- Main shell: seven pages controlled by hash/view state: `dashboard`, `practice`, `recite`, `review`, `reading`, `select`, `settings`.
+- Notes panel/modal: shared note CRUD for the selected phrase.
+- Login overlay: shown when no bearer token exists or an API returns 401.
+- Toast: short error/status messages.
+
+## CSS Conventions
+
+- Keep design tokens in `:root` and dark overrides in `html[data-theme="dark"]`.
+- Reuse existing variables such as `--blue-6`, `--gray-*`, `--surface-*`, `--sidebar-w`, `--header-h`, `--radius`, and `--shadow-*`.
+- Prefer existing utility/component classes: `surface`, `btn`, `btn-primary`, `icon-btn`, `input`, `text-area`, `feedback`, `empty-state`, `dot`, `page`, and view-specific classes.
+- Maintain the fixed app shell: topbar plus sidebar plus scrollable main area.
+- Keep responsive text and controls inside their containers. Do not add oversized hero or marketing layouts to the tool UI.
+
+## JavaScript Architecture
+
+All current UI logic lives in one IIFE in `app.js`:
 
 ```javascript
 (function () {
-  'use strict';
-  const $ = (s) => document.querySelector(s);
-  const $$ = (s) => document.querySelectorAll(s);
-  // ... all state, DOM refs, and functions
-  window.addEventListener('DOMContentLoaded', init);
+  "use strict";
+
+  const API_BASE = "/api/v1";
+  const state = { /* app state */ };
+  const refs = {};
+
+  window.addEventListener("DOMContentLoaded", init);
 })();
 ```
 
-### State management
+Follow the existing pattern:
 
-Module-level variables hold all state:
+- Add DOM references in `cacheRefs()`.
+- Wire event handlers in `bindEvents()`.
+- Store client state in the module-level `state` object.
+- Render through focused functions such as `renderDashboard()`, `renderPractice()`, `renderReview()`, `renderReading()`, `renderSelect()`, and `renderSettings()`.
+- Use `setView()` for page switching and hash updates.
+- Use helper functions like `el()`, `clear()`, `$()`, and `$all()` for DOM construction.
+- Prefer `textContent` and `document.createElement` through `el()`. Avoid raw `innerHTML` for user or API data.
 
-- `phrases` — full word list from `/api/v1/list`
-- `groups`, `letters` — derived grouping by first letter
-- `notesCache` — notes from `/api/v1/notes`
-- `plans`, `activePlan`, `planWords` — plan management
-- `currentPhrase` — the currently selected phrase
-- `selectedSet`, `selectFilter` — selection grid state
+## API Calls
 
-No framework state management — just reassign variables and re-render the affected DOM.
+Use the `api` object in `app.js`, backed by `fetchJson()`:
 
-### API calls
+- `fetchJson()` adds `Authorization: Bearer <token>` for protected calls.
+- It adds `X-LLM-Model` when the user selected a non-default model.
+- It parses JSON errors and clears auth on 401.
+- Login uses `{ auth: false }`.
 
-All API calls use `fetch()` with async/await. No shared client wrapper — call fetch directly:
-
-```javascript
-const res = await fetch('/api/v1/check', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({ phrase: currentPhrase.phrase, sentence: s })
-});
-const data = await res.json();
-```
-
-### DOM patterns
-
-- Use `$()` and `$$()` helpers for queries
-- Re-render functions: `renderSidebar()`, `renderSelectGrid()`, `renderAlphaBar()`
-- Build DOM with `document.createElement()`, not innerHTML (except for simple text)
-- Toggle visibility with `element.hidden` or `.classList.toggle()`
-- Modal: `modalOverlay.classList.add('open')` / `remove('open')`
-- Page switching: `pageSelect.classList.add('active')` / `remove('active')`
-
-### Navigation
-
-Three views controlled by header tabs. `switchPage(page)` toggles `.active` on page sections and header tabs. Practice and Recite share the same `selectPhrase()` flow — selecting a word from the sidebar populates both cards.
-
-Prev/next navigation uses `getNavList()` which respects the active plan filter:
+When adding endpoints, add a method to `api` first, then call it from handlers:
 
 ```javascript
-function getNavList() { return planWords.length ? planWords : phrases; }
+newAction: (payload) =>
+  fetchJson(`${API_BASE}/resource`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  }),
 ```
 
-## Selection grid
+## State Rules
 
-The Select page shows all phrases organized by first letter. Each word is a clickable span with a checkbox indicator. Words locked by the active plan cannot be deselected. Filter buttons (All / Selected / Unselected) control which words are shown.
+Core state lives in `state`:
 
-When building selection UI, keep the `selectedSet` in sync with DOM classes — toggle both together.
+- `phrases`, `notesCache`, `marksCache`, `reviewItems`, `reviewSummary`
+- `plans`, `activePlan`, `currentPhrase`, `selectedSet`
+- `view`, `selectFilter`, `reviewFilter`, `reviewMode`, `reviewMinutes`
+- `readingWords`, `readingResult`
+- `llmSettings`, modal state, feedback text, reveal flags
 
-## Notes
+When state changes, re-render the smallest useful area. Use `renderAll()` after broad changes such as login, plan changes, reset, or review refresh.
 
-Notes are saved incrementally: 600ms debounce on textarea input, plus explicit Save/Delete buttons. The note dot indicator appears on sidebar items and selection grid items via `.dot.visible`. Both Practice and Recite cards show a note button that opens the shared modal.
+## Feature Conventions
 
-## Plans
+- Phrase navigation should respect `navList()`, which filters by the active plan.
+- Plans are saved through `/api/v1/plans`; sanitize names with `sanitizePlanName()`.
+- Selection chips treat active-plan words as locked.
+- Notes update `notesCache`, then re-render notes/sidebar/select indicators.
+- Marks use `markKey()` for multi-meaning phrases: `phrase::meaning_index`.
+- Review settings persist in `localStorage` and refresh `/api/v1/review`.
+- Appearance uses `englishPracticeAppearance` plus `html[data-theme]` and `html[data-appearance]`.
+- LLM model choice is stored in `englishPracticeLlmModel`.
 
-Plans are named word lists stored via `/api/v1/plans`. Auto Create generates day-based plans from the full word list. Manual plans are built from selected words. The active plan filters the sidebar and navigation. Plan badge shows in the sidebar header.
+## Legacy Vue UI
+
+The `ui/` directory contains a Vue 3/Vite/Pinia/Arco source app and a built `dist/` fallback served by the FastAPI catch-all route. Treat it as legacy unless requested. If touching it, use its package scripts from `english-practice-web/src/english_practice_web/ui/`.
+
+## Useful Checks
+
+Run from `english-practice-web/`:
+
+```bash
+node --check src/english_practice_web/ui_v2/app.js
+uv run python -m english_practice_web.server
+```

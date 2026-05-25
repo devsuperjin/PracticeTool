@@ -1,4 +1,4 @@
 interface:
   display_name: "Backend API"
-  short_description: "FastAPI REST API with SQLite and Ollama LLM integration"
-  default_prompt: "Use $backend-api to add a new API endpoint following the project's router-to-store pattern."
+  short_description: "FastAPI REST API with SQLite and Ollama LLM"
+  default_prompt: "Use $backend-api to add or debug a FastAPI endpoint in the English Practice backend."
